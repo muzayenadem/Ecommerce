@@ -18,8 +18,8 @@ const  adminLogin = async(req,res)=>{
          if(!assurePassword)
          return res.status(401).json({error:'wrong email or password'})
 
-         const token = jwt.sign({token:checkExistingEmail._id},process.env.ADMINPASSWORD)
-         res.cookie('token',token,{
+         const adminLoginToken = jwt.sign({adminLoginToken:checkExistingEmail._id},process.env.ADMINPASSWORD)
+         res.cookie('adminLoginToken',adminLoginToken,{
          httpOnly:true
          }).send()
 

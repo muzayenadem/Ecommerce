@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn {
+    @apply py-4 px-10  bg-orange-600 rounded-lg text-center text-white font-bold hover:opacity-80 ease-in duration-200
+}
+.title {
+ @apply font-bold text-3xl md:text-4xl leading-snug   
+}
+
+ .bolb1{
+ @apply w-80 h-80 bg-violet-400  absolute top-14 -left-5 rounded-full overflow-hidden opacity-30 blur-2xl
+  }
+  .bolb2 {
+    @apply w-80 h-80 bg-orange-600 overflow-hidden opacity-30 rounded-full bottom-0 absolute right-0 blur-2xl
+  }
+
+  .active-picture {
+    border: 2px solid orange;
+  }
