@@ -4,7 +4,8 @@ async function searchProductCategory(req,res){
     try {
         const params = req.params.id
         console.log(params)
-         const product = await productModel.find({category:params})
+        const regex = new RegExp(params,'i')
+         const product = await productModel.find({$or:[{category:regex}, {name:regex}]} )
         if(!product)
         return res.status(402).send('there is no an product with this id')
 

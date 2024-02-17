@@ -18,7 +18,7 @@ const addProduct = async(req,res)=>{
             name,
             category:splitedCategory,
             title,
-            price,
+            price:'$'+price,
             description,
             tags:splitedTags,
             date : new Date(),

@@ -42,6 +42,7 @@ const sendIdForServer = async(id) =>{
       <div>
         <input 
         placeholder='search here'
+        type='search'
         value={value}
         onChange={(e)=>setValue(e.target.value)}
         />
@@ -57,7 +58,7 @@ const sendIdForServer = async(id) =>{
             <h1>{single.name}</h1>
             <h1>{single.title}</h1>
             <h1>{single.description}</h1>
-            <h1>{single.name}</h1>
+            <h1>{single.price}</h1>
             <Link to={`${single._id}`}>
               <button onClick={()=>sendIdForServer(single._id)} className='btn'>See More</button>
             </Link>

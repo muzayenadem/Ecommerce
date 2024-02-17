@@ -50,16 +50,14 @@ const [open, setOPen] = useState(false)
   return (
     <div className='container mx-auto py-3'>
        <div className='block w-4/5 h-auto shadow-md rounded-md border-2 p-10 bg-white'>
-        <h1 className='text-center m-4'>Choice beautifull picture and well defined discription for your product</h1>
-        <dialog 
+       <dialog 
         className='w-72 h-[10vh] shadow-md rounded-2xl items-center'
         open={open}>
         <div className='container'>
           <h3 className='text-center text-green-900 font-semibold'>{mee}</h3>
         </div>
         </dialog>
-
-        
+        <h1 className='text-center m-4'>Choice beautifull picture and well defined discription for your product</h1> 
           <label className='m-4'>Product Image</label>
           <br/>
           <input onChange={(e)=> setImage(e.target.files)} className='m-4' type='file'/>

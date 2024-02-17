@@ -15,7 +15,7 @@ const schema = mongoose.Schema({
         type:String
     },
     price:{
-        type:Number,
+        type:String,
         required:true
     },
     description:{

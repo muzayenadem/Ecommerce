@@ -4,7 +4,7 @@ const userLogin = require('../controll/userLogin')
 const adminAdd = require('../controll/adminAdd')
 const adminLogin = require('../controll/adminLogin')
 const addProduct = require('../controll/ProductsApi/addProduct')
-const updateProduct = require('../controll/updateProduct')
+const updateProduct = require('../controll/ProductsApi/updateProduct')
 const productList = require('../controll/ProductsApi/productList')
 const singleProduc = require('../controll/ProductsApi/singleProduct')
 const searchProductCategory = require('../controll/ProductsApi/searchProductCategory')
@@ -13,6 +13,7 @@ const auth = require('../middleware/auth')
 const adminAuth = require('../middleware/adminAuth')
 const loggedIn = require('../controll/loggedIn')
 const adminLoggedIn = require('../controll/adminLogedIn')
+const deleteProduct = require('../controll/ProductsApi/deleteProduct')
 
 // get methods
 router.route('/').get((req,res)=>{
@@ -29,7 +30,11 @@ router.route('/login').post(userLogin)
 router.route('/addadmin').post(adminAdd)
 router.route('/adminlogin').post(adminLogin)
 router.route('/addproduct').post(adminAuth,addProduct)
-router.route('/updateproduct').put(adminAuth,updateProduct)
+router.route('/updateproduct').post(adminAuth,updateProduct)
+
+// delete method
+
+router.route('/delete:id').delete(deleteProduct)
 
 
 module.exports = router
