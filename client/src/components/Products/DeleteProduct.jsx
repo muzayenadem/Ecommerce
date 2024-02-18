@@ -8,6 +8,9 @@ const [allProduts , setAllProducts] = useState([])
 const [value,setValue] = useState('')
 const [serchedProduct,setSearchedProduct] = useState([])
 const [open,setOpen] = useState(false)
+const [succedOpen, setSuccedOPen] = useState(false)
+const [userId, setUserId] = useState('')
+const [fromServer, setFromServer] = useState('')
 //   const dispatch = useDispatch()
 //   useEffect(()=>{
 //     dispatch(fetchProductToken())
@@ -29,33 +32,47 @@ useEffect(()=>{
   .catch(err => setAllProducts(err.message))
 },[])
 
-const sendIdForServer = async(id) =>{
+const sendIdForServer = async() =>{
   try {
-    await axios.delete('http://localhost:4300/delete'+id)
+    await axios.delete('http://localhost:4300/delete'+userId)
     .then(result => {
-      alert('are you do you want to delete this product')
+      setOpen(false)
+      setFromServer(result.data)
+      setSuccedOPen(true)
     })
     .catch(err =>{
-      alert('failed from server')
+      setOpen(false)
+      setFromServer(err.message)
+      setSuccedOPen(true)
     })
-  } catch (error) {
-    alert('failed')
-    console.log(error.message)
+  } catch (err) {
+    setOpen(false)
+    setFromServer(err.message)
+    setSuccedOPen(true)
   }
 }
 
+const deleteHandler = (id) =>{
+   setUserId(id)
+   setOpen(true)
+}
 
   return (
     <div className='relative'>
-      <dialog open={open} className='fixed bg-slate-600 rounded-2xl shadow-slate-50'>
+      <dialog open={open} className='fixed bg-slate-100 rounded-2xl shadow-slate-50'>
         <div className='w-auto h-44 p-14'>
           <h1>are you sure </h1>
           <div className='flex space-x-10'>
           <button onClick={()=>setOpen(false)} className='btn'>cancel</button>
-          <button onClick={()=>sendIdForServer(single._id)} className='btn'>delete</button>
+          <button onClick={sendIdForServer} className='btn'>delete</button>
           </div>
-    
         </div>
+      </dialog>
+      <dialog open={succedOpen} className='fixed bg-slate-100 rounded-2xl shadow-slate-50'>
+      <div className='w-auto h-44 p-14'>
+        <h1>{fromServer}</h1>
+        <button onClick={()=> setSuccedOPen(false)} className='btn'>ok</button>
+      </div>
       </dialog>
       <div>
         <input 
@@ -79,7 +96,7 @@ const sendIdForServer = async(id) =>{
             <h1>{single.price}</h1>
             {/* <Link to={`${single._id}`}> */}
               {/* <button onClick={()=>sendIdForServer(single._id)} className='btn'>See More</button> */}
-              <button onClick={()=>sendIdForServer(single._id)} className='btn'>Delete</button>
+              <button onClick={()=>deleteHandler(single._id)} className='btn'>Delete</button>
               {/* onClick={()=> setOpen(true)} */}
             {/* </Link> */}
           </div>

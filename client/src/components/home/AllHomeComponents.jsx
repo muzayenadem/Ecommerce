@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import Products from './Products'
 import HomeSidebar from './HomeSidebar'
 import Categories from './Categories'
 import TopNav from '../topNav/TopNav'
+import ProductsOutPage from './ProductsOutPage'
+import { Outlet } from 'react-router-dom'
 function AllHomeComponents() {
   const [open,setOpen] = useState(false)
   console.log(open)
@@ -86,7 +87,8 @@ function AllHomeComponents() {
       </div>
       <div className='md:w-[80%]'>
         <Categories/>
-        <Products/>
+        {/* <ProductsOutPage/> */}
+        <Outlet/>
       </div>
       </div>
       <div className='bg-white w-full h-8 '>

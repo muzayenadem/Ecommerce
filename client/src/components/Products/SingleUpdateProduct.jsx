@@ -151,7 +151,7 @@ useEffect(()=>{
           <input 
           id='price'
           name='price'
-          value={u_price !== price ? u_price || price : price}
+          value={u_price !== price ? u_price || ` ${price}` : price}
           onChange={(e)=> setPrice(e.target.value)} 
           className='m-4 border-2' 
           type='text' />

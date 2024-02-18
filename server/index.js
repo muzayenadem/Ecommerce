@@ -1,9 +1,9 @@
 const dotenv = require('dotenv')
 const mongoose = require('mongoose')
 const cors = require('cors')
+const path = require('path')
 const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
-
 const router = require('./router/routes')
 
 // configuration
@@ -31,6 +31,7 @@ const app = express()
 
 
 app.use(express.json())
+app.use(express.static('Files'))
 app.use(cors({
     origin:['http://localhost:5174','http://localhost:5173'],
     credentials:true

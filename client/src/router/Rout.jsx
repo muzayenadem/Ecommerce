@@ -13,16 +13,19 @@ import DeleteProduct from '../components/Products/DeleteProduct'
 import ListProduct from '../components/Products/ListProduct'
 import SingleUpdateProduct from '../components/Products/SingleUpdateProduct'
 import { useParams,useLocation } from 'react-router-dom'
+import SingleProduct from '../components/home/SingleProduct'
+import ProductsOutPage from '../components/home/ProductsOutPage'
+import AllHomeComponents from '../components/home/AllHomeComponents'
 function Rout() {
   const videoId = useParams()
   return (
    <Router>
     <Routes>
-    <Route path='/' element={<Home/>}>
-    <Route path='' element={<Home/>}/>
-    <Route path='home' element={<Home/>}/>
+      <Route path='/' element={<AllHomeComponents/>}>
+        <Route path='' element={<ProductsOutPage/>}/>
+    <Route path='/:productId' element={<SingleProduct/>}/> 
+    <Route path='home' element={<AllHomeComponents/>}/>
     </Route>
-    <Route path='/home' element={<Home/>}/>
     <Route path='/profile' element={<Dashboard/>}>
        <Route path='' element={<div> <h1> this is from somewhere</h1></div>}/>
        <Route path='product' element={<Products/>}>

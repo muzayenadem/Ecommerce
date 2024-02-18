@@ -12,18 +12,23 @@ const [mee,setMee] = useState(null)
 const [open, setOPen] = useState(false)
 
   const submitHandler = async(e) =>{
+    e.preventDefault()
+    const formData = new FormData()
+    formData.append('name',name)
+    formData.append('category',category)
+    formData.append('title',title)
+    formData.append('price',price)
+    formData.append('description',description)
+    formData.append('tags',tags)
+    formData.append('image',image)
     try {
-      e.preventDefault()
-      // const data = {
-      //   image,
-      //   name,
-      //   title,
-      //   price,
-      //   description,
-      //   tags,
-      // }
-      // console.log(data)
-      await axios.post('http://localhost:4300/addproduct',{image,name,category,title,price,description,tags})
+      await axios.post('http://localhost:4300/addproduct',
+      formData
+      ,{
+        headers:{
+          'Conetent-Type':'multipart-from-data'
+        }
+      })
       .then((data)=>{
         setMee(data.data)
         setOPen(true)
@@ -40,13 +45,6 @@ const [open, setOPen] = useState(false)
     }
   }
 
-// useEffect(()=>{
-
-//     setTimeout(() => {
-//       setOPen(false)
-//     }, 3000);
-// },[])
-
   return (
     <div className='container mx-auto py-3'>
        <div className='block w-4/5 h-auto shadow-md rounded-md border-2 p-10 bg-white'>
@@ -60,7 +58,7 @@ const [open, setOPen] = useState(false)
         <h1 className='text-center m-4'>Choice beautifull picture and well defined discription for your product</h1> 
           <label className='m-4'>Product Image</label>
           <br/>
-          <input onChange={(e)=> setImage(e.target.files)} className='m-4' type='file'/>
+          <input type='file' accept='image/*' onChange={(e)=> setImage(e.target.files[0])} className='m-4' />
           <br/>
           <label  className='m-4'>Product Name</label>
           <br />
