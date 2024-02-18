@@ -5,9 +5,9 @@ function SingleUpdateProduct() {
 const [products, setProducts] = useState({})
 
 
-const {name,title,description,price,category,tags,_id} = products
+const {image,name,title,description,price,category,tags,_id} = products
 
-const [U_image,setImage] = useState(null)  
+const [U_image,setImage] = useState(image)  
 const [U_name,setName] = useState(name)
 const [u_category,setCategory] = useState(category)
 const [U_title,setTitle] = useState(title)
@@ -58,19 +58,33 @@ useEffect(()=>{
 
 
   const submitHandler = async(e) =>{
+    e.preventDefault()
+    // image:U_image,
+    // name:U_name,
+    // category:u_category,
+    // title:U_title,
+    // price:u_price,
+    // description:U_description,
+    // tags:U_tags,
+    // userId:_id
+    const formData = new FormData()
+    formData.append('image',U_image)
+    formData.append('name',U_name)
+    formData.append('category',u_category)
+    formData.append('title',U_title)
+    formData.append('price',u_price)
+    formData.append('description',U_description)
+    formData.append('tags',U_tags)
+    formData.append('userId',_id)
     try {
-      e.preventDefault()
-      await axios.post(`http://localhost:4300/updateproduct`,{
-        image:U_image,
-        name:U_name,
-        category:u_category,
-        title:U_title,
-        price:u_price,
-        description:U_description,
-        tags:U_tags,
-        userId:_id
-        // updateproduct,userId:_id
-      })
+      await axios.post(
+        `http://localhost:4300/updateproduct`,
+        formData,
+        {
+          headers:{
+            'Conetent-Type':'multipart-from-data'
+          }
+        })
       .then((data)=>{
         setMee(data.data)
         setOPen(true)
@@ -102,13 +116,15 @@ useEffect(()=>{
         </dialog>
         <div>
         <h1 className='text-center m-4'>Choice beautifull picture and well defined discription for your product</h1> 
-          
+          <img className='w-20 h-20 rounded-full' src={`http://localhost:4300/ProductsImage/${image}`} />
           <form onSubmit={submitHandler}>
           <label htmlFor='image' className='m-4'>Product Image</label>
           <br/>
           <input 
              id='image'
              name='image'
+            //  value={U_image !== image ? U_image || image : image}
+            filename={image}
           onChange={(e)=> setImage(e.target.value)} 
           className='m-4' 
           type='file'/>

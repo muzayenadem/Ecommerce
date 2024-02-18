@@ -43,7 +43,7 @@ router.route('/login').post(userLogin)
 router.route('/addadmin').post(adminAdd)
 router.route('/adminlogin').post(adminLogin)
 router.route('/addproduct').post(upload.single('image'),adminAuth,addProduct)
-router.route('/updateproduct').post(adminAuth,updateProduct)
+router.route('/updateproduct').post(upload.single('image'),adminAuth,updateProduct)
 
 // delete method
 

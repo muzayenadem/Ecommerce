@@ -3,8 +3,8 @@ const productModel = require('../../models/productModel')
 const updateProduct = async(req,res)=>{
     try {
 
-        const {image,name,category,title,price,description,tags,userId} = req.body
-        // const id = req.params.id
+        const {name,category,title,price,description,tags,userId} = req.body
+        // const imageName = req.file.filename
 
         // console.log(id)
         const splitedTags =  tags && tags.split(',')
@@ -12,7 +12,7 @@ const updateProduct = async(req,res)=>{
         const updatedProduct = await productModel.findOneAndUpdate(
             {_id:userId},
             {
-                image,
+                // image:imageName,
                 name,
                 category:splitedCategory,
                 title,
@@ -29,7 +29,7 @@ const updateProduct = async(req,res)=>{
         console.log('errrrrr')
     } catch (error) {
         res.status(500).json({error:error})
-        console.log('errro')
+        console.log(error.message)
     }
 }
 
