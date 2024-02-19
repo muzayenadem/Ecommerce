@@ -54,8 +54,8 @@ function Dashboard() {
         <MenuItem>
           Shop
         </MenuItem>
-        <MenuItem>
-          Shop
+        <MenuItem component={<Link to={'/profile/updateprofile'}/>}>
+          Account
         </MenuItem>
         <MenuItem>
           Shop

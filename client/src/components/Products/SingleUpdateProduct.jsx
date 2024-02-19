@@ -1,51 +1,27 @@
 import React, { useEffect, useRef,useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
+import Products from './Products'
+//import { isInputElement } from 'react-router-dom/dist/dom'
 function SingleUpdateProduct() {
 const [products, setProducts] = useState({})
 
 
-const {image,name,title,description,price,category,tags,_id} = products
+//const {productImage:image,productName:name,productTitle:title,productDescription:description,productPrice:price,productCategory:category,producTtags:tags,_id} = products
 
-const [U_image,setImage] = useState(image)  
-const [U_name,setName] = useState(name)
-const [u_category,setCategory] = useState(category)
-const [U_title,setTitle] = useState(title)
-const [u_price,setPrice] = useState(price)
-const [U_description,setDescription] = useState(description)
-const [U_tags,setTags] = useState(tags)
+const [image,setImage] = useState(products.image) 
+const [name,setName] = useState(products.name)
+const [category,setCategory] = useState(products.category)
+const [title,setTitle] = useState(products.title)
+const [price,setPrice] = useState(products.price)
+const [description,setDescription] = useState(products.description)
+const [tags,setTags] = useState(products.tags)
 const [mee,setMee] = useState(null)
 const [open, setOPen] = useState(false)
-const [updateproduct,setUpdateProduct]= useState({products})
-
-const inputRef = useRef(null)
-const handleFocus = () =>{
-  inputRef.current.focus();
-};
-const handleref = () =>{
-  const value = inputRef.current.value;
-  console.log(value)
-}
-
-//     const [value, setValue] = useState(0)
-//     const changeHandler = (event, newValue) =>{
-//      setValue(newValue)
-//    }
 
 
-// const handleChange = (e) =>{
-//   const {name,value} = e.target
-//   setUpdateProduct({
-//     ...updateproduct,
-//     [name]:value
-//   })
-// }
-console.log(updateproduct)
-const hanldeSubmit = (e) =>{
-  e.preventDefault()
-  // console.log(updateproduct)
-  // console.log(e)
-}
+const navigate = useNavigate()
+
 
 const {productId} = useParams()
 useEffect(()=>{
@@ -53,33 +29,21 @@ useEffect(()=>{
     .then(result => setProducts(result.data))
     .catch(err => setProducts(err.message))
 },[])
-
- // console.log(products)
-
-
   const submitHandler = async(e) =>{
     e.preventDefault()
-    // image:U_image,
-    // name:U_name,
-    // category:u_category,
-    // title:U_title,
-    // price:u_price,
-    // description:U_description,
-    // tags:U_tags,
-    // userId:_id
-    const formData = new FormData()
-    formData.append('image',U_image)
-    formData.append('name',U_name)
-    formData.append('category',u_category)
-    formData.append('title',U_title)
-    formData.append('price',u_price)
-    formData.append('description',U_description)
-    formData.append('tags',U_tags)
-    formData.append('userId',_id)
+     const formData = new FormData()
+    formData.append('image',image? image : null)
+    formData.append('name', name ? name : products.name)
+    formData.append('category',category ? category : products.category)
+    formData.append('title', title ? title : products.title)
+    formData.append('price', price ? price : products.price)
+    formData.append('description',description ? description : products.description)
+    formData.append('tags',tags ? tags : products.tags)
+    formData.append('userId',products._id)
     try {
       await axios.post(
         `http://localhost:4300/updateproduct`,
-        formData,
+         formData,
         {
           headers:{
             'Conetent-Type':'multipart-from-data'
@@ -90,8 +54,9 @@ useEffect(()=>{
         setOPen(true)
         setTimeout(() => {
           setOPen(false)
+          window.reload()
         }, 3000);
-        // console.log('succefully submitted')
+   
       })
       .catch((err)=>{
         console.log(err.message)
@@ -100,8 +65,6 @@ useEffect(()=>{
       console.log(error.message)
     }
   }
-  const str = Number || String
-  // const parsedPrice = parse(price)
   return (
     <div>
         {/* <h1>{name}</h1>
@@ -116,16 +79,16 @@ useEffect(()=>{
         </dialog>
         <div>
         <h1 className='text-center m-4'>Choice beautifull picture and well defined discription for your product</h1> 
-          <img className='w-20 h-20 rounded-full' src={`http://localhost:4300/ProductsImage/${image}`} />
+          <img className='w-20 h-20 rounded-full' src={`http://localhost:4300/ProductsImage/${products.image}`} />
           <form onSubmit={submitHandler}>
           <label htmlFor='image' className='m-4'>Product Image</label>
           <br/>
           <input 
              id='image'
              name='image'
-            //  value={U_image !== image ? U_image || image : image}
-            filename={image}
-          onChange={(e)=> setImage(e.target.value)} 
+            files={image !== products.image ? image || products.image : products.image}
+            accept='image/*'
+            onChange={(e)=> setImage(e.target.files[0])} 
           className='m-4' 
           type='file'/>
           <br/>
@@ -134,10 +97,7 @@ useEffect(()=>{
           <input 
           id='name'
           name='name'
-          // ref={inputRef} 
-          // placeholder={name}
-          // onChange={handleref}
-          value={U_name !== name ? U_name || ` ${name}` : name}
+          value={name !== products.name ? name || ` ${products.name}` : products.name}
            onChange={(e)=> setName(e.target.value)} 
           className='m-4 border-2' 
           type='text' />
@@ -147,7 +107,7 @@ useEffect(()=>{
           <input  
              id='category'
              name='category'
-             value={u_category !== category ? u_category || ` ${category}` : category}
+             value={category !== products.category ? category || ` ${products.category}` : products.category}
              onChange={(e)=> setCategory(e.target.value)} 
              className='m-4 border-2' 
              type='text' />
@@ -157,7 +117,7 @@ useEffect(()=>{
           <input 
           id='title'
           name='title'
-          value={U_title !== title ? U_title || ` ${title}` : title}
+          value={title !== products.title ? title || ` ${products.title}` : products.title}
           onChange={(e)=> setTitle(e.target.value)} 
           className='m-4 border-2' 
           type='text' />
@@ -167,7 +127,7 @@ useEffect(()=>{
           <input 
           id='price'
           name='price'
-          value={u_price !== price ? u_price || ` ${price}` : price}
+          value={price !== products.price ? price || ` ${products.price}` : products.price}
           onChange={(e)=> setPrice(e.target.value)} 
           className='m-4 border-2' 
           type='text' />
@@ -177,7 +137,7 @@ useEffect(()=>{
           <textarea 
           id='description'
           name='description'
-          value={U_description !== description ? U_description || ` ${description}` : description}
+          value={description !== products.description ? description || ` ${products.description}` : products.description}
           onChange={(e)=> setDescription(e.target.value)} 
           className='m-4 border-2' 
           type='text' />
@@ -187,13 +147,12 @@ useEffect(()=>{
           <input
           id='tags'
           name='tags'
-          value={U_tags !== tags ? U_tags || ` ${tags}` : tags}
+          value={tags !== products.tags ? tags || ` ${products.tags}` : products.tags}
           onChange={(e)=> setTags(e.target.value)}
           className='m-4 border-2' 
           type='text' />
           <br/>
           <button type='submit' className='py-2 px-4 border-1 rounded-3xl bg-green-900 text-white font-bold ml-10'>Submit</button> 
-
           </form>
         </div>
     </div>

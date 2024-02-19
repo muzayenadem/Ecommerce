@@ -16,6 +16,7 @@ import { useParams,useLocation } from 'react-router-dom'
 import SingleProduct from '../components/home/SingleProduct'
 import ProductsOutPage from '../components/home/ProductsOutPage'
 import AllHomeComponents from '../components/home/AllHomeComponents'
+import UpdateProfile from '../components/profile/UpdateProfile'
 function Rout() {
   const videoId = useParams()
   return (
@@ -23,11 +24,15 @@ function Rout() {
     <Routes>
       <Route path='/' element={<AllHomeComponents/>}>
         <Route path='' element={<ProductsOutPage/>}/>
+        <Route path='home/:productId' element={<SingleProduct/>}/> 
     <Route path='/:productId' element={<SingleProduct/>}/> 
-    <Route path='home' element={<AllHomeComponents/>}/>
+    </Route>
+    <Route path='/home' element={<AllHomeComponents/>}>
+    <Route path='' element={<ProductsOutPage/>}/>
     </Route>
     <Route path='/profile' element={<Dashboard/>}>
        <Route path='' element={<div> <h1> this is from somewhere</h1></div>}/>
+       <Route path='updateprofile'  element={<UpdateProfile/>}/>
        <Route path='product' element={<Products/>}>
         <Route path='updateproduct/:productId' element={<SingleUpdateProduct/>}/>
         <Route path='' element={<PostProduct/>}/>

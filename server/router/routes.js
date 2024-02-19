@@ -15,6 +15,7 @@ const adminAuth = require('../middleware/adminAuth')
 const loggedIn = require('../controll/loggedIn')
 const adminLoggedIn = require('../controll/adminLogedIn')
 const deleteProduct = require('../controll/ProductsApi/deleteProduct')
+const profileData = require('../controll/profileData')
 const storage = multer.diskStorage({
     destination:function(req,file,cb){
         cb(null,'Files/ProductsImage');
@@ -32,7 +33,8 @@ const upload = multer({storage:storage});
 router.route('/').get((req,res)=>{
     res.send('yes yes yes')
 })
-router.route('/products').get(auth,productList)
+router.route('/profiledata').get(auth,profileData)
+router.route('/products').get(productList)
 router.route('/loggedin').get(loggedIn)
 router.route('/adminloggedin').get(adminLoggedIn)
 router.route('/singleproduct:id').get(singleProduc)

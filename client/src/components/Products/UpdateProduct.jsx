@@ -55,6 +55,7 @@ const sendIdForServer = async(id) =>{
           key={index} 
           className='w-auto h-auto border-2 shadow-amber-400 rounded-2xl mt-10 bg-white'
           >
+            <img src={`http://localhost:4300/ProductsImage/${single.image}`} className='W-20 h-20 rounded-2xl m-14'/>
             <h1>{single.name}</h1>
             <h1>{single.title}</h1>
             <h1>{single.description}</h1>

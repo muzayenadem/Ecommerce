@@ -14,7 +14,7 @@ const productModel = require("../../models/productModel")
 
 const addProduct = async(req,res)=>{
     try {
-        const {name,category,title,price,description,tags,trickCode} = req.body
+        const {name,category,title,price,description,tags} = req.body
         // console.log(image[0])
         const imageUrl = req.file.filename;
         const splitedTags = tags.split(',')
@@ -33,7 +33,6 @@ const addProduct = async(req,res)=>{
             description,
             tags:splitedTags,
             date : new Date(),
-            trickCode
         })
 
         const savingProduct = await newProduct.save()

@@ -26,9 +26,6 @@ const schema = mongoose.Schema({
     },
     date :{
         type: String
-    },
-    trickCode:{
-        type:Number
     }
 })
 

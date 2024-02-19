@@ -44,7 +44,7 @@ const [open, setOPen] = useState(false)
       console.log(error.message)
     }
   }
-
+console.log(image)
   return (
     <div className='container mx-auto py-3'>
        <div className='block w-4/5 h-auto shadow-md rounded-md border-2 p-10 bg-white'>
