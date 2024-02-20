@@ -7,7 +7,7 @@ import logo from './br1.jpg'
 import LoginD from '../dialougs/LoginD'
 import { useDispatch, useSelector } from 'react-redux'
 import { yesOpendSignup,noOpendSignup } from '../../feutures/drobarStates/signUpState'
-
+import { yesOpend,noOpend } from '../../feutures/drobarStates/loginState'
 
 function SignUpDrawbar() {
     const [firstName, setFirstName] = useState('')
@@ -32,7 +32,8 @@ const dispatch = useDispatch()
         try {
           axios.post('http://localhost:4300/signup',{firstName,lastName,email,password,confirmPassword})
           .then(()=>{
-            //  navigate('/')
+            dispatch(noOpendSignup())
+            dispatch(yesOpend())
           })
           .catch((err)=>{
              console.log(err.message)
@@ -61,7 +62,7 @@ const dispatch = useDispatch()
                 <div
                 className='py-1'
                 role='menu'
-                 onMouseLeave={()=> dispatch(noOpendSignup())}
+                //  onMouseLeave={()=> dispatch(noOpendSignup())}
                 aria-orientation='vertical'
                 aria-labelledby='options-menu'
                 >

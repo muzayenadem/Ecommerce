@@ -4,6 +4,8 @@ import signReducer from "../drobarStates/signUpState";
 import loginReducer from "../drobarStates/loginState";
 import adminLoginReducer from "../drobarStates/AdminLoginSlice";
 
+import profileDataReducer from "../data/profileData";
+
 
 // tokens
 import adminTokenReducer from '../Tokens/adminToken';
@@ -16,7 +18,8 @@ const store = configureStore({
         signUpState:signReducer,
         adminLoginState:adminLoginReducer,
         adminTokenState:adminTokenReducer,
-        productTokenState:productTokenReducer
+        productTokenState:productTokenReducer,
+        profileData:profileDataReducer,
     }
 })
 

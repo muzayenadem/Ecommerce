@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Drowbar from '../drowbars/Drowbar'
 import LoginD from '../dialougs/LoginD'
@@ -14,6 +15,8 @@ import { fetchToken } from '../../feutures/Tokens/tokenSlice'
 import logo from '../drowbars/br1.jpg'
 
 function TopNav() {
+  const [value, setValue] = useState('')
+
 
   const loginState = useSelector(state=> state.loginState.isOpen)
   console.log(loginState)
@@ -34,7 +37,15 @@ function TopNav() {
    const token = useSelector((state)=> state.token.token)
    console.log(token)
 
-
+   const searchHandler =async () =>{
+    try {
+     await axios.get('http://localhost:4300/searchproductcategory'+value)
+    //  .then(result => setAllProducts(result.data))
+    //  .catch(err => setSearchedProduct(err.message))
+    } catch (error) {
+     console.log(error.message)
+    }
+   }
 
 
   return (
@@ -48,9 +59,11 @@ function TopNav() {
       </div>
       <div className='hidden md:block'>
        <input 
+       onChange={(e)=> setValue(e.target.value)}
        className='text-left py-2 px-3 border-2 rounded-3xl focus:outline-none'
        placeholder='Search here'/>
        <button
+         onClick={searchHandler}
        className='text-center ml-4 bg-green-950 text-white font-bold py-2 px-4 rounded-3xl'
        >Search</button>
       </div>

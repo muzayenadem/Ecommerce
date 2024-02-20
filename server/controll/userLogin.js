@@ -8,19 +8,18 @@ const  userLogin = async(req,res)=>{
          if(!email || !password) 
          return res.status(4001).json({error:'please fill all data'})
 
-         const checkExistingEmail = await usersModel.findOne({email})
+         const user = await usersModel.findOne({email})
 
-         if(!checkExistingEmail)
+         if(!user)
          return res.status(401).json({error:'wrong email or password'})
 
-         const assurePassword = await bcrypt.compare(password,checkExistingEmail.password)
+         const assurePassword = await bcrypt.compare(password,user.password)
 
          if(!assurePassword)
          return res.status(401).json({error:'wrong email or password'})
 
-         const token = jwt.sign({token:checkExistingEmail._id},process.env.PASSWORD)
-         res.cookie('token',token,{httpOnly :true}).send()
-
+         const token = jwt.sign({userId:user._id},process.env.PASSWORD,{expiresIn:'1h'});
+         res.cookie('user',token,{httpOnly :true}).send()
     } catch (error) {
         
     }

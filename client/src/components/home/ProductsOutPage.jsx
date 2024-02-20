@@ -41,13 +41,16 @@ const sendIdForServer = async(id) =>{
   return (
     <div>
       <div>
+        <div className='ml-[20%] py-6'>
         <input 
-        placeholder='search here'
-        type='search'
-        value={value}
-        onChange={(e)=>setValue(e.target.value)}
-        />
-        <button onClick={searchHandler} >Search</button>
+       onChange={(e)=> setValue(e.target.value)}
+       className='text-left py-2 px-3 border-2 rounded-3xl focus:outline-none'
+       placeholder='Search here'/>
+       <button
+         onClick={searchHandler}
+       className='text-center ml-4 bg-green-950 text-white font-bold py-2 px-4 rounded-3xl'
+       >Search</button>
+        </div>
       </div>
        <div>
       <div className='grid grid-cols-1 items-center container mx-auto self-center place-items-center text-center md:grid-cols-3 lg:grid-cols-4 '>

@@ -10,12 +10,13 @@ import {useDispatch, useSelector } from 'react-redux'
 import { yesOpend,noOpend } from '../../feutures/drobarStates/loginState'
 import { fetchToken } from '../../feutures/Tokens/tokenSlice'
 import { yesOpendAdminLogin,noOpendAdminLogin } from '../../feutures/drobarStates/AdminLoginSlice'
+import { fetchProfileData } from '../../feutures/data/profileData'
 //import logo from '../drowbars/br1.jpg' 
 
 
 function ProfileDrawbar({opened,nopend}) {
 
- 
+    const [profile,setProfile] = useState({})
     const [isOpen, setIsOpen] = useState(false) 
 
     // despatching
@@ -34,7 +35,22 @@ function ProfileDrawbar({opened,nopend}) {
 
     const me = useSelector(state => state.adminLoginState.isOpen)
     console.log(me)
+  
 
+    const logoutHandler = () =>{
+      axios.get('http://localhost:4300/logout')
+     window.location='http://localhost:5173'
+ 
+    }
+    useEffect(()=>{
+      axios.get('http://localhost:4300/profiledata')
+      .then(result => setProfile(result.data))
+      .catch(err => setProfile(err.message))
+  },[])
+  
+     //const profile = useSelector(state => state.profileData.profile)
+    // console.log(profile)
+    //  const {firstName,lastName,email} = profile
   return (
     <div  className='relative inline-block text-left'>
     <div className='flex'>
@@ -42,7 +58,14 @@ function ProfileDrawbar({opened,nopend}) {
           Login
         </button>
         <span onClick={()=>dispatch(noOpend())} >Login</span> */}
-         <img onClick={toggleDropDown} src={logo} className='w-10 h-10 rounded-full cursor-pointer' alt="" />
+        {
+          profile.image ?
+            <img onClick={toggleDropDown} src={`http://localhost:4300/UsersImage/${profile.image}`} className='w-10 h-10 rounded-full cursor-pointer' alt="" /> : 
+            <div className='w-10 h-10 rounded-full cursor-pointer capitalize bg-neutral-900 text-white font-bold text-center '>
+             <h1 onClick={toggleDropDown} className='text-center mt-2'> {profile.firstName}</h1>
+            </div>
+        }
+       
          {/* <span className='font-bold text-orange-700 text-2xl'>&#9776;</span> */}
     </div>
 
@@ -58,8 +81,14 @@ function ProfileDrawbar({opened,nopend}) {
                 >
                   <div>
                     <div className='w-full h-auto flex mb-5 justify-around'>
-                      <img src={logo} className='w-14 h-14 rounded-full ' alt="" />
-                      <h4>Muzayen Adem</h4>
+                    {
+          profile.image ?
+            <img onClick={toggleDropDown} src={`http://localhost:4300/UsersImage/${profile.image}`} className='w-14 h-14 rounded-full cursor-pointer' alt="" /> : 
+            <div className='w-14 h-14 rounded-full cursor-pointer capitalize bg-neutral-900 text-white font-bold text-center '>
+             <h1 onClick={toggleDropDown} className='text-center text-2xl mt-3'> {profile.firstName[0]} {profile.lastName[0]}</h1>
+            </div>
+        }
+                      <h4>{profile.firstName} {profile.lastName}</h4>
                     </div>
                     <hr></hr>
                     <details>
@@ -78,7 +107,7 @@ function ProfileDrawbar({opened,nopend}) {
                       distpatch(yesOpendAdminLogin())
                     }} className='block px-4 py-2 mt-5 mb-5 text-gray-700 hover:bg-gray-100 font-bold text-xl' >Membership programm</i>
                     <hr></hr>
-                    <a href='#' className='block px-4 py-2  text-gray-700 hover:bg-gray-100 font-bold text-xl' >Sign out</a>
+                    <a href='#' onClick={logoutHandler} className='block px-4 py-2  text-gray-700 hover:bg-gray-100 font-bold text-xl' >Sign out</a>
                   </div>
                 </div>
             </div>

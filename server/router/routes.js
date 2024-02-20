@@ -16,7 +16,10 @@ const loggedIn = require('../controll/loggedIn')
 const adminLoggedIn = require('../controll/adminLogedIn')
 const deleteProduct = require('../controll/ProductsApi/deleteProduct')
 const profileData = require('../controll/profileData')
-const storage = multer.diskStorage({
+const updateProfile = require('../controll/updateProfile')
+
+// to store the products image
+const productImageStorage = multer.diskStorage({
     destination:function(req,file,cb){
         cb(null,'Files/ProductsImage');
     },
@@ -24,7 +27,18 @@ const storage = multer.diskStorage({
         cb(null,file.originalname)
     }
 })
-const upload = multer({storage:storage});
+const uploadProductImage = multer({storage:productImageStorage});
+
+// to store the products image
+const userImageStorage = multer.diskStorage({
+    destination:function(req,file,cb){
+        cb(null,'Files/UsersImage');
+    },
+    filename:function(req,file,cb){
+        cb(null,file.originalname)
+    }
+})
+const uploadUserImage = multer({storage:userImageStorage});
 
 
 
@@ -39,13 +53,22 @@ router.route('/loggedin').get(loggedIn)
 router.route('/adminloggedin').get(adminLoggedIn)
 router.route('/singleproduct:id').get(singleProduc)
 router.route('/searchproductcategory:id').get(searchProductCategory)
+router.route('/logout').get((req,res)=>{
+    res.cookie("user","",{
+        httpOnly:true,
+        expires:new Date(0)
+    }).send();
+    console.log('logged out')
+})
+
 ///post methods
 router.route('/signup').post(userSingup)
 router.route('/login').post(userLogin)
 router.route('/addadmin').post(adminAdd)
 router.route('/adminlogin').post(adminLogin)
-router.route('/addproduct').post(upload.single('image'),adminAuth,addProduct)
-router.route('/updateproduct').post(upload.single('image'),adminAuth,updateProduct)
+router.route('/addproduct').post(uploadProductImage.single('image'),adminAuth,addProduct)
+router.route('/updateproduct').post(uploadProductImage.single('image'),adminAuth,updateProduct)
+router.route('/updateprofile').post(uploadUserImage.single('image'),auth,updateProfile)
 
 // delete method
 
