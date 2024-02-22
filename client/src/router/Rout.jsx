@@ -17,6 +17,10 @@ import SingleProduct from '../components/home/SingleProduct'
 import ProductsOutPage from '../components/home/ProductsOutPage'
 import AllHomeComponents from '../components/home/AllHomeComponents'
 import UpdateProfile from '../components/profile/UpdateProfile'
+import MainProfile from '../components/profile/MainProfile'
+import Notification from '../components/profile/Notification'
+import ChosePlan from '../components/profile/ChosePlan'
+import PasswordAndSecurity from '../components/profile/PasswordAndSecurity'
 function Rout() {
   const videoId = useParams()
   return (
@@ -32,7 +36,12 @@ function Rout() {
     </Route>
     <Route path='/profile' element={<Dashboard/>}>
        <Route path='' element={<div> <h1> this is from somewhere</h1></div>}/>
-       <Route path='updateprofile'  element={<UpdateProfile/>}/>
+       <Route path='mainprofile'  element={<MainProfile/>}>
+         <Route path='' element={<UpdateProfile/>}/>
+         <Route path='notification' element={<Notification/>}/>
+         <Route path='choseplan' element={<ChosePlan/>}/>
+         <Route path='passwordAndsecurity' element={<PasswordAndSecurity/>}/>
+       </Route>
        <Route path='product' element={<Products/>}>
         <Route path='updateproduct/:productId' element={<SingleUpdateProduct/>}/>
         <Route path='' element={<PostProduct/>}/>
