@@ -26,7 +26,7 @@ const navigate = useNavigate()
 const {productId} = useParams()
 useEffect(()=>{
     axios.get('http://localhost:4300/singleproduct'+productId)
-    .then(result => setProducts(result.data))
+    .then(result => setProducts(result.data.product))
     .catch(err => setProducts(err.message))
 },[])
   const submitHandler = async(e) =>{

@@ -21,13 +21,14 @@ import MainProfile from '../components/profile/MainProfile'
 import Notification from '../components/profile/Notification'
 import ChosePlan from '../components/profile/ChosePlan'
 import PasswordAndSecurity from '../components/profile/PasswordAndSecurity'
+import HomeMain from '../components/home/HomeMain'
 function Rout() {
   const videoId = useParams()
   return (
    <Router>
     <Routes>
       <Route path='/' element={<AllHomeComponents/>}>
-        <Route path='' element={<ProductsOutPage/>}/>
+        <Route path='' element={<HomeMain/>}/>
         <Route path='home/:productId' element={<SingleProduct/>}/> 
     <Route path='/:productId' element={<SingleProduct/>}/> 
     </Route>

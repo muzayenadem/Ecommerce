@@ -42,11 +42,14 @@ const sendIdForServer = async(id) =>{
       <div>
         <input 
         placeholder='search here'
+        className='px-3 py-2 rounded-md focus:outline-none'
         type='search'
         value={value}
         onChange={(e)=>setValue(e.target.value)}
         />
-        <button onClick={searchHandler} >Search</button>
+        <button 
+        className='py-2 px-3 text-center rounded-md shadow-md bg-orange-600 ml-3'
+        onClick={searchHandler} >Search</button>
       </div>
 
       {

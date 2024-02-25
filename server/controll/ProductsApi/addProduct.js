@@ -16,16 +16,23 @@ const addProduct = async(req,res)=>{
     try {
         const {name,category,title,price,description,tags} = req.body
         // console.log(image[0])
-        const imageUrl = req.file.filename;
+       
+// Route for uploading multiple images
+    if (!req.files) {
+    //   return res.status(400).send('No files were uploaded.');
+    console.log('rhhhhhh')
+    }
+    
+        const images = req.files.map(file => file.filename);
         const splitedTags = tags.split(',')
         const splitedCategory = category.split(',')
         if(!name || !price || !title)
         return res.status(401).json({err:'fill all required data'})
 
-
+console.log(images)
 
         const newProduct = new productModel({
-            image:imageUrl,
+            image:images,
             name,
             category:splitedCategory,
             title,

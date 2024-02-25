@@ -23,7 +23,7 @@ const [address,setAddress] = useState(profile.address)
 const [mee,setMee] = useState(null)
 const [open, setOPen] = useState(false)
 
-
+const [imageDialoge, setImageDialoge] = useState(false)
 
 const navigate = useNavigate()
 
@@ -34,12 +34,43 @@ useEffect(()=>{
     .then(result => setProfile(result.data))
     .catch(err => setProfile(err.message))
 },[])
+
+// const changeProfileImage = async(e) =>{
+//   e.preventDefault()
+//   const formData = new FormData()
+//   formData.append('image',image? image : profile.image)
+//   formData.append('userId',profile._id)
+//   try {
+//     await axios.post(
+//       `http://localhost:4300/updateprofile`,
+//        formData,
+//       {
+//         headers:{
+//           'Conetent-Type':'multipart-from-data'
+//         }
+//       })
+//     .then((data)=>{
+//       setMee(data.data)
+//       setOPen(true)
+//       setTimeout(() => {
+//         setOPen(false)
+//         window.reload()
+//       }, 3000);
+ 
+//     })
+//     .catch((err)=>{
+//       console.log(err.message)
+//     })
+//   } catch (error) {
+//     console.log(error.message)
+//   }
+// }
   const submitHandler = async(e) =>{
     e.preventDefault()
      const formData = new FormData()
     formData.append('image',image? image : profile.image)
     formData.append('firstName', firstName ? firstName : profile.firstName)
-    formData.append('lastName', lastName ? firstName : profile.lastName)
+    formData.append('lastName', lastName ? lastName : profile.lastName)
     formData.append('email', email ? email : profile.email)
     formData.append('phone', phone ? phone : profile.phone)
     formData.append('address', address ? address : profile.address)
@@ -58,9 +89,9 @@ useEffect(()=>{
       .then((data)=>{
         setMee(data.data)
         setOPen(true)
+        setImageDialoge(false)
         setTimeout(() => {
           setOPen(false)
-          window.reload()
         }, 3000);
    
       })
@@ -71,23 +102,26 @@ useEffect(()=>{
       console.log(error.message)
     }
   }
+// const FileInput = ({onChange}) =>{
+//   return (
+//     <input type='file' accept='image/*' onChange={onchange}/>
+//   )
+// }
+
   return (
     <div>
-        {/* <h1>{name}</h1>
-        <h1>{title}</h1>
-        <h1>{description}</h1> */}
          <dialog 
-        className='w-72 h-[10vh] shadow-md rounded-2xl items-center'
+        className='w-72 h-[10vh] shadow-md rounded-2xl items-center '
         open={open}>
         <div className='container'>
           <h3 className='text-center text-green-900 font-semibold'>{mee}</h3>
         </div>
         </dialog>
-        <div>
-        <h1 className='text-center m-4'>Choice beautifull picture and well defined discription for your product</h1> 
-          <img className='w-20 h-20 rounded-full' src={`http://localhost:4300/UsersImage/${profile.image}`} />
-          <form onSubmit={submitHandler}>
-          <label htmlFor='image' className='m-4'>Product Image</label>
+        <dialog 
+        className='  shadow-md rounded-2xl items-center p-3 md:ml-[60%]'
+        open={imageDialoge}>
+        <div className='container'>
+        <label htmlFor='image' className='m-4'>Change Image</label>
           <br/>
           <input 
              id='image'
@@ -98,6 +132,17 @@ useEffect(()=>{
           className='m-4' 
           type='file'/>
           <br/>
+          <div className='flex justify-center'>
+            <button className='btn' onClick={()=> setImageDialoge(false)}>Cancel</button>
+            <button className='btn' onClick={submitHandler}>Change</button>
+          </div>
+        </div>
+        </dialog>
+        <div>
+        <h1 className='text-center m-4'>Choice beautifull picture and well defined discription for your product</h1> 
+          <img onClick={()=> setImageDialoge(true)} className='w-20 h-20 rounded-full' src={`http://localhost:4300/UsersImage/${profile.image}`} />
+          <form onSubmit={submitHandler}>
+       
           <label htmlFor='name' className='m-4'>Product Name</label>
           <br />
           <input 
@@ -156,6 +201,14 @@ useEffect(()=>{
           className='m-4 border-2' 
           type='text' />
           <br />
+          {/* <select aria-placeholder='Gender'>
+          
+            <option >Male</option>
+            <option >Male</option>
+            <option >Male</option>
+            <option >Male</option>
+            <option >Male</option>
+          </select> */}
           <label htmlFor='tags' className='m-4'>Product Tags</label>
           <br />
           <input

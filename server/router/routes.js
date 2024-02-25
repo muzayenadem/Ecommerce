@@ -66,7 +66,7 @@ router.route('/signup').post(userSingup)
 router.route('/login').post(userLogin)
 router.route('/addadmin').post(adminAdd)
 router.route('/adminlogin').post(adminLogin)
-router.route('/addproduct').post(uploadProductImage.single('image'),adminAuth,addProduct)
+router.route('/addproduct').post(uploadProductImage.array('images',5),adminAuth,addProduct)
 router.route('/updateproduct').post(uploadProductImage.single('image'),adminAuth,updateProduct)
 router.route('/updateprofile').post(uploadUserImage.single('image'),auth,updateProfile)
 

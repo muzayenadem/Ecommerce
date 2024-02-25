@@ -14,7 +14,10 @@ import AdminLoginDrawbar from '../drowbars/AdminLoginDrowbar'
 import { fetchToken } from '../../feutures/Tokens/tokenSlice'
 import logo from '../drowbars/br1.jpg'
 
-function TopNav() {
+
+import { fetchMainSearchedData } from '../../feutures/Searched/mainSearchedSlice'
+
+function TopNav({str}) {
   const [value, setValue] = useState('')
 
 
@@ -38,14 +41,11 @@ function TopNav() {
    console.log(token)
 
    const searchHandler =async () =>{
-    try {
-     await axios.get('http://localhost:4300/searchproductcategory'+value)
-    //  .then(result => setAllProducts(result.data))
-    //  .catch(err => setSearchedProduct(err.message))
-    } catch (error) {
-     console.log(error.message)
-    }
+     dispatch(fetchMainSearchedData(value))     
    }
+
+   const searchedData = useSelector(state => state.mainSearchedData.searchedData)
+   console.log(searchedData)
 
 
   return (

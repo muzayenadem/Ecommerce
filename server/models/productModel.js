@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const schema = mongoose.Schema({
     image:{
-        type:String
+        type:Array( String)
     },
     name:{
         type:String,

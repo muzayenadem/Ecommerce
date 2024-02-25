@@ -6,7 +6,7 @@ import adminLoginReducer from "../drobarStates/AdminLoginSlice";
 
 import profileDataReducer from "../data/profileData";
 
-
+import mainSearchedDataReducer from "../Searched/mainSearchedSlice";
 // tokens
 import adminTokenReducer from '../Tokens/adminToken';
 import tokenReducer from '../Tokens/tokenSlice';
@@ -20,6 +20,7 @@ const store = configureStore({
         adminTokenState:adminTokenReducer,
         productTokenState:productTokenReducer,
         profileData:profileDataReducer,
+        mainSearchedData:mainSearchedDataReducer,
     }
 })
 
