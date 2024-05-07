@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector,useDispatch } from 'react-redux'
-import { fetchProductToken } from '../../feutures/Tokens/productToken'
+import { fetchProductToken } from '../../../feutures/Tokens/productToken'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 function DeleteProduct() {

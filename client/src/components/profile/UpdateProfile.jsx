@@ -31,7 +31,7 @@ const navigate = useNavigate()
 // const {productId} = useParams()
 useEffect(()=>{
     axios.get('http://localhost:4300/profiledata')
-    .then(result => setProfile(result.data))
+    .then(result => setProfile(result.data.userData))
     .catch(err => setProfile(err.message))
 },[])
 
@@ -143,7 +143,7 @@ useEffect(()=>{
           <img onClick={()=> setImageDialoge(true)} className='w-20 h-20 rounded-full' src={`http://localhost:4300/UsersImage/${profile.image}`} />
           <form onSubmit={submitHandler}>
        
-          <label htmlFor='name' className='m-4'>Product Name</label>
+          <label htmlFor='name' className='m-4'> Name</label>
           <br />
           <input 
           id='name'
@@ -181,7 +181,7 @@ useEffect(()=>{
           className='m-4 border-2' 
           type='text' /> */}
           <br/>
-          <label htmlFor='price' className='m-4'>Price</label>
+          <label htmlFor='price' className='m-4'>Phone</label>
           <br />
           <input 
           id='price'
@@ -191,7 +191,7 @@ useEffect(()=>{
           className='m-4 border-2' 
           type='text' />
           <br/>
-          <label htmlFor='description' className='m-4'>Description</label>
+          <label htmlFor='description' className='m-4'>Gender</label>
           <br/>
           <textarea 
           id='description'
@@ -209,7 +209,7 @@ useEffect(()=>{
             <option >Male</option>
             <option >Male</option>
           </select> */}
-          <label htmlFor='tags' className='m-4'>Product Tags</label>
+          <label htmlFor='tags' className='m-4'>Address</label>
           <br />
           <input
           id='tags'

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import img1 from '../../ecoImages/img1.jpeg'
 import { useSelector,useDispatch } from 'react-redux'
-import { fetchProductToken } from '../../feutures/Tokens/productToken'
+import { fetchProductToken } from '../../../feutures/Tokens/productToken'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
-import Categories from './Categories'
-import { fetchMainSearchedData } from '../../feutures/Searched/mainSearchedSlice'
+import Categories from '../../home/Categories'
+import { fetchMainSearchedData } from '../../../feutures/Searched/mainSearchedSlice'
 function ProductsOutPage() {
 
 
@@ -15,10 +14,14 @@ const [allProduts , setAllProducts] = useState([])
 const [topProduct , setTopProduct] = useState([])
 const [value,setValue] = useState('')
 const [serchedProduct,setSearchedProduct] = useState([])
-const searchHandler =async () =>{
+const searchHandler =async (value) =>{
  try {
   await axios.get('http://localhost:4300/searchproductcategory'+value)
-  .then(result => setAllProducts(result.data))
+  .then(result =>{
+  setAllProducts(result.data)
+  console.log(result.data)
+  window.reload()
+ })
   .catch(err => setSearchedProduct(err.message))
  } catch (error) {
   console.log(error.message)
@@ -49,24 +52,31 @@ const sendIdForServer = async(id) =>{
 
       <div className='ml-[20%] py-6'>
         <input 
+        type='search'
+         onBeforeInput={()=>{
+          searchHandler(value)
+        }}
        onChange={(e)=> setValue(e.target.value)}
        className='text-left py-2 px-3 border-2 rounded-3xl focus:outline-none'
        placeholder='Search here'/>
        <button
-         onClick={searchHandler}
+         onClick={()=>{
+          searchHandler(value)
+        }}
         // onMouseOver={searchHandler}
        className='text-center ml-4 bg-green-950 text-white font-bold py-2 px-4 rounded-3xl'
        >Search</button>
         </div>
         <div className='container mx-auto py-2 ml-[1%]'>
 
-        <div className='flex-col container mx-auto place-content-center text-center items-center  md:flex md:flex-row overflow-x-auto bg-white gap-4 py-3 px-4 ml-5'>
+        <div className='hidden flex-col container mx-auto place-content-center text-center items-center  md:flex md:flex-row overflow-x-auto bg-white gap-4 py-3 px-4 ml-5'>
         {
             topProduct.map((single,index) =>{
+              const val = single.tags[0]
                 return <div 
                 onClick={()=>{
-                  setValue(single.tags[0])
-                  searchHandler()
+                  // setValue(val)
+                  searchHandler(val)
                 }}
                  className='flex justify-around bo mb-3 md:flex-col md:flex-none items-center place-self-center place-content-center'key={index}>
                     <img 

@@ -10,7 +10,7 @@ import { useSelector,useDispatch } from 'react-redux'
 import { yesOpend,noOpend } from '../../feutures/drobarStates/loginState'
 import { yesOpendSignup,noOpendSignup } from '../../feutures/drobarStates/signUpState'
 import { yesOpendAdminLogin,noOpendAdminLogin } from '../../feutures/drobarStates/AdminLoginSlice'
-import AdminLoginDrawbar from '../drowbars/AdminLoginDrowbar'
+//import AdminLoginDrawbar from '../Admin/AdminDrabars/AdminLoginDrowbar'
 import { fetchToken } from '../../feutures/Tokens/tokenSlice'
 import logo from '../drowbars/br1.jpg'
 
@@ -55,7 +55,7 @@ function TopNav({str}) {
        <span className='text-red-700'>Eza</span>Sco
            {loginState && !token && <li className='list-none'><LoginDrowbar /></li>}
            {singupState && !token && <li className='list-none'><SignUpDrawbar /></li>}
-           <li className='list-none'><AdminLoginDrawbar /></li>
+           {/* <li className='list-none'><AdminLoginDrawbar /></li> */}
       </div>
       <div className='hidden md:block'>
        <input 

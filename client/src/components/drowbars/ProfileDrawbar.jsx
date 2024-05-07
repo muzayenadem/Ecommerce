@@ -4,14 +4,12 @@ import { useNavigate } from 'react-router-dom'
 
 import { Link } from 'react-router-dom'
 import logo from './br1.jpg'
-import AdminLoginDrawbar from './AdminLoginDrowbar'
 
 import {useDispatch, useSelector } from 'react-redux'
 import { yesOpend,noOpend } from '../../feutures/drobarStates/loginState'
 import { fetchToken } from '../../feutures/Tokens/tokenSlice'
 import { yesOpendAdminLogin,noOpendAdminLogin } from '../../feutures/drobarStates/AdminLoginSlice'
 import { fetchProfileData } from '../../feutures/data/profileData'
-//import logo from '../drowbars/br1.jpg' 
 
 
 function ProfileDrawbar({opened,nopend}) {
@@ -32,11 +30,6 @@ function ProfileDrawbar({opened,nopend}) {
       setIsOpen(!isOpen)
     }   
     const distpatch = useDispatch()  
-
-    const me = useSelector(state => state.adminLoginState.isOpen)
-    console.log(me)
-  
-
     const logoutHandler = () =>{
       axios.get('http://localhost:4300/logout')
      window.location='http://localhost:5173'
@@ -44,7 +37,7 @@ function ProfileDrawbar({opened,nopend}) {
     }
     useEffect(()=>{
       axios.get('http://localhost:4300/profiledata')
-      .then(result => setProfile(result.data))
+      .then(result => setProfile(result.data.userData))
       .catch(err => setProfile(err.message))
   },[])
   
@@ -60,7 +53,7 @@ function ProfileDrawbar({opened,nopend}) {
         <span onClick={()=>dispatch(noOpend())} >Login</span> */}
         {
           profile.image ?
-            <img onClick={toggleDropDown} src={`http://localhost:4300/UsersImage/${profile.image}`} className='w-10 h-10 rounded-full cursor-pointer' alt="" /> : 
+            <img onMouseOver={toggleDropDown}  src={`http://localhost:4300/UsersImage/${profile.image}`} className='w-10 h-10 rounded-full cursor-pointer' alt="" /> : 
             <div className='w-10 h-10 rounded-full cursor-pointer capitalize bg-neutral-900 text-white font-bold text-center '>
              <h1 onClick={toggleDropDown} className='text-center mt-2'> {profile.firstName}</h1>
             </div>
@@ -76,7 +69,7 @@ function ProfileDrawbar({opened,nopend}) {
                 className='py-1'
                 role='menu'
                 aria-orientation='vertical'
-                onMouseLeave={toggleDropDown}
+               
                 aria-labelledby='options-menu'
                 >
                   <div>
@@ -97,7 +90,7 @@ function ProfileDrawbar({opened,nopend}) {
                     </details>
                     
                     <a href='/profile' className='block px-4 py-2  text-gray-700 hover:bg-gray-100 font-bold text-xl' >My Ezasco</a>
-                    <a href='/' className='block px-4 py-2  text-gray-700 hover:bg-gray-100 font-bold text-xl' >Messages</a>
+                    <Link onClick={toggleDropDown} to={'/profile/message'} className='block px-4 py-2  text-gray-700 hover:bg-gray-100 font-bold text-xl' >Messages</Link>
                     <a href='/' className='block px-4 py-2  text-gray-700 hover:bg-gray-100 font-bold text-xl' >Orders</a>
                     <a href='/' className='block px-4 py-2  text-gray-700 hover:bg-gray-100 font-bold text-xl' >RQFs</a>
                     <a href='/' className='block px-4 py-2  text-gray-700 hover:bg-gray-100 font-bold text-xl' >Favorites</a>
@@ -108,6 +101,7 @@ function ProfileDrawbar({opened,nopend}) {
                     }} className='block px-4 py-2 mt-5 mb-5 text-gray-700 hover:bg-gray-100 font-bold text-xl' >Membership programm</i>
                     <hr></hr>
                     <a href='#' onClick={logoutHandler} className='block px-4 py-2  text-gray-700 hover:bg-gray-100 font-bold text-xl' >Sign out</a>
+                   
                   </div>
                 </div>
             </div>

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const { type } = require('os')
 
 
 
@@ -31,7 +32,18 @@ const schema = mongoose.Schema({
     },
     gender:{
         type:String
-    }
+    },
+    carts:{
+        type:String
+    },
+    date:{
+        type:String
+    },
+    notification:{
+        type:String
+    },
+    messages:[]
+   // messages:[{ type: mongoose.Schema.Types.ObjectId, ref: 'Message' }],
 })
 
 const usersModel = mongoose.model('users',schema)

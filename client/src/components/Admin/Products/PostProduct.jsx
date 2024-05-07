@@ -138,7 +138,6 @@ const convertToBase64 = (e) =>{
           <br />
           <input 
           onChange={(e)=> setPrice(e.target.value)} 
-         
           className='m-4 border-2 px-3 py-2 focus:outline-none' 
           type='number' 
           placeholder='$ price'

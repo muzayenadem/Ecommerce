@@ -8,17 +8,17 @@ const  adminLogin = async(req,res)=>{
          if(!email || !password) 
          return res.status(4001).json({error:'please fill all data'})
 
-         const checkExistingEmail = await adminModel.findOne({email})
+         const checkAdmin = await adminModel.findOne({email})
 
-         if(!checkExistingEmail)
+         if(!checkAdmin)
          return res.status(401).json({error:'wrong email or password'})
 
-         const assurePassword = await bcrypt.compare(password,checkExistingEmail.password)
+         const assurePassword = await bcrypt.compare(password,checkAdmin.password)
 
          if(!assurePassword)
          return res.status(401).json({error:'wrong email or password'})
 
-         const adminLoginToken = jwt.sign({adminLoginToken:checkExistingEmail._id},process.env.ADMINPASSWORD)
+         const adminLoginToken = jwt.sign({adminId:checkAdmin._id},process.env.ADMINPASSWORD)
          res.cookie('adminLoginToken',adminLoginToken,{
          httpOnly:true
          }).send()

@@ -20,6 +20,7 @@ const  userLogin = async(req,res)=>{
 
          const token = jwt.sign({userId:user._id},process.env.PASSWORD,{expiresIn:'1h'});
          res.cookie('user',token,{httpOnly :true}).send()
+         
     } catch (error) {
         
     }

@@ -24,14 +24,14 @@ async function userSingup(req,res){
         const hashedPassword = await bcrypt.hash(password,salt)
 
         console.log(hashedPassword)
-        const newUser = new usersModel({firstName,lastName,email,password:hashedPassword})
+        const newUser = new usersModel({firstName,lastName,email,password:hashedPassword,date: new Date()})
         const savedUser = await newUser.save()
 
         console.log(savedUser)
 
 
         const token = jwt.sign({token:savedUser._id},process.env.PASSWORD)
-        res.cookie('token',token,{
+        res.cookie('user',token,{
             httpOnly: true
          }).send()
 

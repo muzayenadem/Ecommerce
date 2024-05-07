@@ -7,7 +7,7 @@ import LoginDrowbar from '../drowbars/LoginDrowbar'
 import ProfileDrawbar from '../drowbars/ProfileDrawbar'
 import { useSelector,useDispatch } from 'react-redux'
 import { fetchToken } from '../../feutures/Tokens/tokenSlice'
-import AdminLoginDrawbar from '../drowbars/AdminLoginDrowbar'
+//import AdminLoginDrawbar from '../Admin/AdminDrabars/AdminLoginDrowbar'
 import logo from '../drowbars/br1.jpg'
 
  
@@ -27,7 +27,7 @@ const dispatch = useDispatch()
 
 
   return (
-    <div className=' flex shadow-md bg-white m-0 justify-between h-auto py-3 px-10 mx-auto w-screen '>
+    <div className=' flex sticky top-0 left-0 shadow-md bg-white m-0 justify-between h-auto py-3 px-10 mx-auto w-screen '>
     <div className='text-green-950 font-bold text-2xl font-mono ml-4 mt-2 mb-' >
      <span className='text-red-700'>Eza</span>Sco
     </div>

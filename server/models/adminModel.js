@@ -3,6 +3,9 @@ const mongoose = require('mongoose')
 
 
 const schema = mongoose.Schema({
+    image:{
+        type:String
+    },
     firstName:{
         type:String,
         required:true,
@@ -16,13 +19,18 @@ const schema = mongoose.Schema({
         required:true,
         unique:true
     },
-    phone:{
-        type:Number,
-        required:true
-    },
     password:{
         type:String || Number,
         required:true
+    },
+    address:{
+        type:String
+    },
+    phone:{
+        type:String
+    },
+    gender:{
+        type:String
     }
 })
 

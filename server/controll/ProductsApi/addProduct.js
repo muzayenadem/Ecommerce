@@ -36,7 +36,7 @@ console.log(images)
             name,
             category:splitedCategory,
             title,
-            price:'$'+price,
+            price,
             description,
             tags:splitedTags,
             date : new Date(),

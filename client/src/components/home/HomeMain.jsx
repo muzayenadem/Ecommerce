@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import HomeSidebar from './HomeSidebar'
 import Categories from './Categories'
 import TopNav from '../topNav/TopNav'
-import ProductsOutPage from './ProductsOutPage'
+import ProductsOutPage from '../Admin/Products/ProductsOutPage'
 import { Outlet } from 'react-router-dom'
 
 function HomeMain() {
