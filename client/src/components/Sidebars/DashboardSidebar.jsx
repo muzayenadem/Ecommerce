@@ -17,7 +17,7 @@ useEffect(()=>{
     <div className='  top-16 left-0 sticky'>
         <div className='  sticky top-16 left-0'>
     <Sidebar 
-   className={`w-72 sticky top-0 left-0 h-[100vh] bg-white shadow-md hidden  md:block ${!isTrue ? 'hidden' : 'block'} ${isTrue && 'absolute'}`}  
+   className={`w-72 sticky top-0 left-0 h-[90vh] bg-white shadow-md hidden  md:block ${!isTrue ? 'hidden' : 'block'} ${isTrue && 'absolute'}`}  
    >
     <Menu>
     {/* <MenuItem component={<Link to={'/market/'}/>}  icon={<OpenInBrowser/>}>

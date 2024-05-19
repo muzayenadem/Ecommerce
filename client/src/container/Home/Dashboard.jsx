@@ -31,7 +31,7 @@ useEffect(()=>{
         <ProfileTopnav/>
         <div className='flex justify-start'>
           <DashboardSidebar/>
-        <div className='w-[100%] md:w-[80%]'>
+        <div className='w-[100%]'>
   <Outlet/>
  </div>
 </div>

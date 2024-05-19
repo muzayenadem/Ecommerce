@@ -52,9 +52,8 @@ function UsersForMessage() {
    // console.log(admin.firstName[0],admin.lastName[0])
   return (
     <>
-    <div className='grid grid-cols-1 md:grid-cols-2'>
-      {!open ? 
-    <div className='md:w-[80%] mt-6'>
+    <div className='flex justify-start'>
+    <div className='md:w-[20%]'>
          <input 
         type='search'
          onBeforeInput={()=>{
@@ -64,24 +63,24 @@ function UsersForMessage() {
        className='text-left py-2 px-3 border-2 md:w-[80%] ml-8 rounded-xl shadow-md focus:outline-none'
        placeholder='Search here'/>
   
-    <div className='flex mt-6 flex-wrap h-auto max-h-[60vh]  overflow-y-auto w-[100%] md:w-[100%]'>
+    <div className='flex flex-wrap h-auto max-h-[80vh]  overflow-y-auto w-[45%] md:w-[100%]'>
       <hr/>
         <div className='w-[100%] md:w-[100%]'>
         
         {
             allusers.map((single,i)=>{
-                return <div key={i} onClick={()=>forMessage(single._id)} className=' h-auto bg-white m-3 rounded-md p-2'>
-                    <div >
+                return <div key={i} onClick={()=>forMessage(single._id)} className='h-auto bg-white m-1 rounded-md p-2'>
+                    <div className='flex'>
                   {
                     single.image ? 
                     <img src={`http://localhost:4300/UsersImage/${single.image}`}
-                   className='w-16 h-16 rounded-full'
+                   className=' w-10 h-10 rounded-full'
                    />
                    :
-                   <div className='w-16 h-16 rounded-full text-center items-center p-3 bg-orange-500 text-white font-bold'>{single.firstName[0]} {single.lastName[0]}</div>
+                   <div className='w-10 h-10 rounded-full text-center items-center p-3 bg-orange-500 text-white font-bold'>{single.firstName[0]} {single.lastName[0]}</div>
                   }
                    
-                    <h1>{single.firstName} {single.lastName}</h1>
+                    <h1 className='ml-2 mt-2'>{single.firstName} {single.lastName}</h1>
                     </div>
       
                 </div>
@@ -90,12 +89,7 @@ function UsersForMessage() {
         </div>
     </div>
     </div> 
-    :
-    <div>
-      <h1 onClick={()=> setOpen(false)}>Back</h1>
-    </div>
-}
-      <div className='w-60%'>
+      <div className='w-[80%]'>
         <Outlet/>
       </div>
     </div>

@@ -6,7 +6,7 @@ import { Outlet } from 'react-router-dom'
 function MessageHome() {
   return (
     <div>
-        <UsersForMessage/>
+        {/* <UsersForMessage/> */}
         <div>
         {/* <Outlet/> */}
         </div>

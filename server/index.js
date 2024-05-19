@@ -30,7 +30,7 @@ mongoose.connect(process.env.DATABASE)
 const express = require('express')
 const app = express()
 
-
+// middlewares
 
 app.use(express.json())
 app.use(bodyParser.json())
@@ -50,15 +50,3 @@ const PORT = 4300
 app.listen(PORT,()=>{
     console.log('the server is running on '+PORT)
 })
-
-
-
-// middlewares
-
-
-
-
-// middlewares
-
-
-

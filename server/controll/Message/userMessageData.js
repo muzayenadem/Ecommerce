@@ -1,10 +1,13 @@
 const jwt = require('jsonwebtoken')
 const userModel = require('../../models/usersModel')
+const messageModel = require('../../models/messageModel')
 const userMessageData = async(req,res) =>{
     try {
       const userToken = req.cookies.user
       const params = req.params.id
       const verify = jwt.verify(userToken,process.env.PASSWORD)
+      const sender = verify.userId
+      const receiver = params
       if(!verify){
       console.log('no token')
       return res.status(404).send('there is no token')
@@ -17,8 +20,13 @@ const userMessageData = async(req,res) =>{
       console.log('no no no')
       return res.status(404).send('there is no data with this token')
       }
- 
-      return res.status(200).send(singleuserdata)
+
+      const chat = await messageModel.findOne({participants:{$all :[receiver,sender]}})
+      if(chat){
+        console.log({chat})
+        return res.status(200).send({singleuserdata,chat:chat.conversation})
+      }
+      return res.status(200).send({singleuserdata})
     } catch (error) {
       console.log(error.message)
         res.status(500).send({error:error.message})
