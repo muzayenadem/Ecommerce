@@ -75,7 +75,7 @@ const uploadMessageFile = multer({storage:messageFileStorage});
 
 
 // get methods
-router.route('/').get((req,res)=>{
+router.route('/let').get((req,res)=>{
     res.send('yes yes yes')
 })
 router.route('/adminprofile').get(adminAuth,adminProfile)
