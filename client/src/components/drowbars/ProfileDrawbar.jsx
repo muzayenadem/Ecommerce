@@ -30,9 +30,10 @@ function ProfileDrawbar({opened,nopend}) {
       setIsOpen(!isOpen)
     }   
     const distpatch = useDispatch()  
+    const navigate = useNavigate('')
     const logoutHandler = () =>{
       axios.get('https://ecommerce-8yhy.onrender.com/logout')
-     window.location='https://ezasco.vercel.app'
+      navigate('/')
  
     }
     useEffect(()=>{

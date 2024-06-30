@@ -1,5 +1,5 @@
 import React, { useState ,useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 
 import { useSelector,useDispatch } from 'react-redux'
@@ -114,14 +114,15 @@ function SingleProduct() {
         console.log('something is wrong')
       }
     },[])
-// // send cart to the account
+// // sencond cart to the account
+const navigate = useNavigate('')
 const sendCart = () =>{
   try {
     const color = 'red'
     axios.put('https://ecommerce-8yhy.onrender.com/addcart',{productId:product._id,userId:user._id,color,quantity})
     .then((result)=>{
       //console.log('succsesesd')
-      window.location = 'https://ezasco.vercel.app/profile/my-carts'
+      navigate('/profile/my-carts')
     })
     .catch(err =>{
       console.log(err.message)
