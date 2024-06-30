@@ -42,7 +42,7 @@ app.use(express.static('Files'))
 
 
 const allowedOrigins = [
-    'https://my-ecommerce-git-ecommerce-muzayen.vercel.app/'
+    'https://my-ecommerce-ecru.vercel.app'
   ];
   
   const corsOptions = {
