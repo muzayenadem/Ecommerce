@@ -39,14 +39,22 @@ app.use(express.static('Files'))
 //     origin:['http://localhost:5174','http://localhost:5173'],
 //     credentials:true
 //    }))
-// app.use(cors({
-//     origin:['https://my-ecommerce-e8745zc3g-muzayen.vercel.app','https://my-ecommerce-hi29l4vnn-muzayen.vercel.app'],
-//     credentials:true
-//    }))
-app.use(cors({
-    origin: ['https://my-ecommerce-dtcm9m04k-muzayen.vercel.app','my-ecommerce-dtcm9m04k-muzayen.vercel.app/:1'],
-    credentials:true
-}));
+const allowedOrigins = [
+    'https://my-ecommerce-dtcm9m04k-muzayen.vercel.app', // Replace with your actual Vercel domain
+    'https://my-ecommerce-hnyi3091v-muzayen.vercel.app/' // Add any custom domains you use
+  ];
+  
+  const corsOptions = {
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    }
+  };
+  
+app.use(cors(corsOptions));
 app.use(cookieParser())
 app.use(express.urlencoded({extended: true}))
 
