@@ -39,6 +39,8 @@ app.use(express.static('Files'))
 //     origin:['http://localhost:5174','http://localhost:5173'],
 //     credentials:true
 //    }))
+
+
 const allowedOrigins = [
     'https://my-ecommerce-git-ecommerce-muzayen.vercel.app/'
   ];
@@ -54,10 +56,8 @@ const allowedOrigins = [
   };
   
   app.use(cors(corsOptions));
-app.use(cors({
-    origin: ['https://my-ecommerce-dtcm9m04k-muzayen.vercel.app','my-ecommerce-dtcm9m04k-muzayen.vercel.app/:1'],
-    credentials:true
-}));
+
+
 app.use(cookieParser())
 app.use(express.urlencoded({extended: true}))
 
