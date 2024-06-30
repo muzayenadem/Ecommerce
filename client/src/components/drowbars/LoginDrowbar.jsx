@@ -22,7 +22,7 @@ function LoginDrowbar({}) {
     const dispatch = useDispatch()
 
 
-     const navigate = useNavigate()
+     const navigate = useNavigate('')
    
 
     const loginHandler = async(e) =>{
@@ -32,7 +32,8 @@ function LoginDrowbar({}) {
        dispatch(noOpend())
       await axios.post('https://ecommerce-8yhy.onrender.com/login',{email,password})
        .then(()=>{
-           window.location = 'https://ezasco.vercel.app/home'
+         //  window.location = 'https://ezasco.vercel.app/home'
+         navigate('/home')
        })
        .catch((err)=>{
           console.log(err.message)
