@@ -7,7 +7,6 @@ import { Provider } from 'react-redux'
 import TopNav from './components/topNav/TopNav'
 import Rout from './router/Rout'
 /// components fpr practice
-import Home from './practice/Home'
 import LoginDrowbar from './components/drowbars/Drowbar'
 import LoginD from './components/dialougs/LoginD'
 axios.defaults.withCredentials = true
