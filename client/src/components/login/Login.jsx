@@ -22,7 +22,7 @@ function Login() {
      } catch (error) {
       console.log(error.message)
      }
-    }
+    } 
   return (
     <div  className='container items-center mx-auto py-20 '>
     
