@@ -13,7 +13,7 @@ function AdminLogin() {
         try {
             axios.post('https://ecommerce-8yhy.onrender.com/adminlogin',{email,password})
             .then(()=>
-            window.location = 'https://ecommerce-8yhy.onrender.com/admindashboard'
+            window.location = 'https://ezasco.vercel.app/admindashboard'
            // console.log('this is successfy sent to server')
             
           )

@@ -121,7 +121,7 @@ const sendCart = () =>{
     axios.put('https://ecommerce-8yhy.onrender.com/addcart',{productId:product._id,userId:user._id,color,quantity})
     .then((result)=>{
       //console.log('succsesesd')
-      window.location = 'https://ecommerce-client-coral.vercel.app/profile/my-carts'
+      window.location = 'https://ezasco.vercel.app/profile/my-carts'
     })
     .catch(err =>{
       console.log(err.message)

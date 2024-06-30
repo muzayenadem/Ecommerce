@@ -32,7 +32,7 @@ function ProfileDrawbar({opened,nopend}) {
     const distpatch = useDispatch()  
     const logoutHandler = () =>{
       axios.get('https://ecommerce-8yhy.onrender.com/logout')
-     window.location='https://ecommerce-client-coral.vercel.app'
+     window.location='https://ezasco.vercel.app'
  
     }
     useEffect(()=>{

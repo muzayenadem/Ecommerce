@@ -36,7 +36,7 @@ app.use(express.json())
 app.use(bodyParser.json())
 app.use(express.static('Files'))
 app.use(cors({
-    origin:['https://ecommerce-client-coral.vercel.app'],
+    origin:['https://ezasco.vercel.app'],
     credentials:true
    }))
 
