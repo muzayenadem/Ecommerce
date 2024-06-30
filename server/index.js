@@ -42,7 +42,7 @@ app.use(express.static('Files'))
 
 
 const allowedOrigins = [
-    'https://my-ecommerce-ecru.vercel.app'
+    'https://ecommerce-client-coral.vercel.app/'
   ];
   
   const corsOptions = {
