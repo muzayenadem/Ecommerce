@@ -44,7 +44,7 @@ app.use(express.static('Files'))
 //     credentials:true
 //    }))
 app.use(cors({
-    origin: 'https://my-ecommerce-nenlcge0n-muzayen.vercel.app',
+    origin: ['https://my-ecommerce-dtcm9m04k-muzayen.vercel.app','my-ecommerce-dtcm9m04k-muzayen.vercel.app/:1'],
     credentials:true
 }));
 app.use(cookieParser())
