@@ -36,7 +36,7 @@ app.use(express.json())
 app.use(bodyParser.json())
 app.use(express.static('Files'))
 app.use(cors({
-    origin:['https://ezasco.vercel.app'],
+    origin:['https://ezasco.vercel.app','http://localhost:5173'],
     credentials:true
    }))
 
