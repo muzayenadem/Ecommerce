@@ -32,9 +32,7 @@ function LoginDrowbar({}) {
        dispatch(noOpend())
       await axios.post('https://ecommerce-8yhy.onrender.com/login',{email,password})
        .then(()=>{
-           window.location = 'http://localhost:5173/home'
-          //navigate('/home')
-          //window.relaod = 'http://localhost:5173/home'
+           window.location = 'https://ecommerce-client-coral.vercel.app/home'
        })
        .catch((err)=>{
           console.log(err.message)
