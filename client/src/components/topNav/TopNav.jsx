@@ -20,15 +20,26 @@ import { fetchMainSearchedData } from '../../feutures/Searched/mainSearchedSlice
 function TopNav({str}) {
   const [value, setValue] = useState('')
   const [realToken,setRealToken] = useState(false)
+  const [userData, setUserData] = useState({})
   const loginState = useSelector(state=> state.loginState.isOpen)
- 
 
+
+  useEffect(()=>{
+    axios.get("https://ecommerce-8yhy.onrender.com/profiledata")
+    .then((res)=>{
+      setUserData(res.data)
+    })
+    .catch(err =>{
+      setUserData({error:err.message})
+    })
+  },[])
+  console.log({userData})
   useEffect(()=>{
     axios.get('https://ecommerce-8yhy.onrender.com/loggedin')
     .then((res)=>{
       setRealToken(res.data)
     })
-  })
+  },[])
   const adminLoginState = useSelector(state=> state.adminLoginState.isOpen)
   console.log(loginState)
 
