@@ -15,7 +15,7 @@ const [serchedProduct,setSearchedProduct] = useState([])
 // console.log(productToken)
 const searchHandler =async () =>{
  try {
-  await axios.get('http://localhost:4300/searchproductcategory'+value)
+  await axios.get('https://ecommerce-8yhy.onrender.com/searchproductcategory'+value)
   .then(result => setAllProducts(result.data))
   .catch(err => setSearchedProduct(err.message))
  } catch (error) {
@@ -23,14 +23,14 @@ const searchHandler =async () =>{
  }
 }
 useEffect(()=>{
-  axios.get('http://localhost:4300/products')
+  axios.get('https://ecommerce-8yhy.onrender.com/products')
   .then(result => setAllProducts(result.data))
   .catch(err => setAllProducts(err.message))
 },[])
 
 const sendIdForServer = async(id) =>{
   try {
-    await axios.get('http://localhost:4300/singleproduct'+id)
+    await axios.get('https://ecommerce-8yhy.onrender.com/singleproduct'+id)
   } catch (error) {
     console.log(error.message)
   }
@@ -58,7 +58,7 @@ const sendIdForServer = async(id) =>{
           key={index} 
           className='w-auto h-auto border-2 shadow-amber-400 rounded-2xl mt-10 bg-white'
           >
-            <img src={`http://localhost:4300/ProductsImage/${single.image[0]}`} className='W-20 h-20 rounded-2xl m-14'/>
+            <img src={`https://ecommerce-8yhy.onrender.com/ProductsImage/${single.image[0]}`} className='W-20 h-20 rounded-2xl m-14'/>
             <h1>{single.name}</h1>
             <h1>{single.title}</h1>
             <h1>{single.description}</h1>

@@ -10,7 +10,7 @@ const initialState = {
 
 
 export const fetchProductToken = createAsyncThunk('productData/fetchProductToken',()=>{
-   return axios.get('http://localhost:4300/products')
+   return axios.get('https://ecommerce-8yhy.onrender.com/products')
    .then((result) =>{
       return result.data
    })

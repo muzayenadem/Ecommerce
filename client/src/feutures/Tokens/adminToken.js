@@ -10,7 +10,7 @@ const initialState = {
 
 
 export const fetchAdminToken = createAsyncThunk('adminToken/fetchAdminToken',()=>{
-   return axios.get('http://localhost:4300/adminloggedin')
+   return axios.get('https://ecommerce-8yhy.onrender.com/adminloggedin')
    .then((result) =>{
       return result.data
    })
