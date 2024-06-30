@@ -39,11 +39,14 @@ app.use(express.static('Files'))
 //     origin:['http://localhost:5174','http://localhost:5173'],
 //     credentials:true
 //    }))
+// app.use(cors({
+//     origin:['https://my-ecommerce-e8745zc3g-muzayen.vercel.app','https://my-ecommerce-hi29l4vnn-muzayen.vercel.app'],
+//     credentials:true
+//    }))
 app.use(cors({
-    origin:['https://my-ecommerce-e8745zc3g-muzayen.vercel.app','https://my-ecommerce-hi29l4vnn-muzayen.vercel.app'],
+    origin: 'https://my-ecommerce-nenlcge0n-muzayen.vercel.app',
     credentials:true
-   }))
-   
+}));
 app.use(cookieParser())
 app.use(express.urlencoded({extended: true}))
 
