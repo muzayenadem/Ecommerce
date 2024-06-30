@@ -2,8 +2,6 @@ import React, {useEffect, useState } from 'react'
 
 function Categories() {
     const [allProduts , setAllProducts] = useState([])
-    const data = [1,2,3,4,5,6,7,8,9,0,1,2,4,5,7,8,9,0,4,5,3,2,1,3,4,55,66,7,88,9,7,5,4,3,2,3,4,8,6]
-    const [currentIndex,setCurrenntIndex] = useState(0)
 useEffect(()=>{
     axios.get('https://ecommerce-8yhy.onrender.com/products')
     .then(result => setAllProducts(result.data))
