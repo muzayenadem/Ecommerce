@@ -23,7 +23,7 @@ const dispatch = useDispatch()
   dispatch(fetchToken())
  },[])
  const token = useSelector((state)=> state.token.token)
- console.log(token)
+ console.log({token})
 
 
   return (

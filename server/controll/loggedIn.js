@@ -11,6 +11,7 @@ if(!token) return res.json(false)
     const assure = jwt.verify(token,process.env.PASSWORD)
  //  console.log(assure.userId)
    if(assure){
+      console.log({userLogedIn:true})
       return res.json(true)
    }
    else

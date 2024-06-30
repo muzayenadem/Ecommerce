@@ -19,12 +19,16 @@ import { fetchMainSearchedData } from '../../feutures/Searched/mainSearchedSlice
 
 function TopNav({str}) {
   const [value, setValue] = useState('')
-
-
+  const [realToken,setRealToken] = useState(false)
   const loginState = useSelector(state=> state.loginState.isOpen)
-  console.log(loginState)
+ 
 
-
+  useEffect(()=>{
+    axios.get('https://ecommerce-8yhy.onrender.com/loggedin')
+    .then((res)=>{
+      setRealToken(res.data)
+    })
+  })
   const adminLoginState = useSelector(state=> state.adminLoginState.isOpen)
   console.log(loginState)
 
@@ -38,7 +42,8 @@ function TopNav({str}) {
     dispatch(fetchToken())
    },[])
    const token = useSelector((state)=> state.token.token)
-   console.log(token)
+   console.log({token})
+   console.log({realToken})
 
    const searchHandler =async () =>{
      dispatch(fetchMainSearchedData(value))     
