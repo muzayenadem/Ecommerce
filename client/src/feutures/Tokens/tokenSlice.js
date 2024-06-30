@@ -10,7 +10,7 @@ const initialState = {
 
 
 export const fetchToken = createAsyncThunk('token/userToken',()=>{
-   return axios.get('http://localhost:4300/loggedin')
+   return axios.get('https://ecommerce-8yhy.onrender.com/loggedin')
    .then((result) =>{
       return result.data
    })

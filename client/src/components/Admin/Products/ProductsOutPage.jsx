@@ -16,7 +16,7 @@ const [value,setValue] = useState('')
 const [serchedProduct,setSearchedProduct] = useState([])
 const searchHandler =async (value) =>{
  try {
-  await axios.get('http://localhost:4300/searchproductcategory'+value)
+  await axios.get('https://ecommerce-8yhy.onrender.com/searchproductcategory'+value)
   .then(result =>{
   setAllProducts(result.data)
   console.log(result.data)
@@ -31,7 +31,7 @@ const searchHandler =async (value) =>{
 //   searchHandler()
 //  },3000)
 useEffect(()=>{
-  axios.get('http://localhost:4300/products')
+  axios.get('https://ecommerce-8yhy.onrender.com/products')
   .then(result => {
     setTopProduct(result.data)
     setAllProducts(result.data)
@@ -41,7 +41,7 @@ useEffect(()=>{
 
 const sendIdForServer = async(id) =>{
   try {
-    await axios.get('http://localhost:4300/singleproduct'+id)
+    await axios.get('https://ecommerce-8yhy.onrender.com/singleproduct'+id)
   } catch (error) {
     console.log(error.message)
   }
@@ -80,7 +80,7 @@ const sendIdForServer = async(id) =>{
                 }}
                  className='flex justify-around bo mb-3 md:flex-col md:flex-none items-center place-self-center place-content-center'key={index}>
                     <img 
-                    src={`http://localhost:4300/ProductsImage/${single.image[0]}`} 
+                    src={`https://ecommerce-8yhy.onrender.com/ProductsImage/${single.image[0]}`} 
                     alt='' 
                     className={`w-20 h-20 rounded-full  `}></img>
                     <p>Laptop</p>
@@ -101,13 +101,13 @@ const sendIdForServer = async(id) =>{
           return <div key={index} className='items-center text-left place-items-center ml-5 mt-4 rounded-md p-5 bg-white'>
           <img 
           className='h-64'
-          src={`http://localhost:4300/ProductsImage/${single.image[0]}`} 
+          src={`https://ecommerce-8yhy.onrender.com/ProductsImage/${single.image[0]}`} 
           alt="" />
           <div className='flex justify-around m-3'>
             {
           single.image.map((s,i)=>{
               return <div key={i}>
-                 <img src={`http://localhost:4300/ProductsImage/${s}`} className='w-10 h-10' />
+                 <img src={`https://ecommerce-8yhy.onrender.com/ProductsImage/${s}`} className='w-10 h-10' />
               </div>
             })
           }

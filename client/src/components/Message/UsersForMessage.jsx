@@ -22,7 +22,7 @@ function UsersForMessage() {
       }  
      }
     useEffect(()=>{
-        axios.get('http://localhost:4300/searchuserformessage'+value)
+        axios.get('https://ecommerce-8yhy.onrender.com/searchuserformessage'+value)
         .then(result =>{
             setAllUsers(result.data.allUsers)
         })
@@ -34,7 +34,7 @@ function UsersForMessage() {
 
     const forMessage = async(id)=>{
       try {
-        await axios.get('http://localhost:4300/usermessagedata'+id)
+        await axios.get('https://ecommerce-8yhy.onrender.com/usermessagedata'+id)
         .then(()=>{
           console.log('succeed')
           setOpen(true)
@@ -73,7 +73,7 @@ function UsersForMessage() {
                     <div className='flex'>
                   {
                     single.image ? 
-                    <img src={`http://localhost:4300/UsersImage/${single.image}`}
+                    <img src={`https://ecommerce-8yhy.onrender.com/UsersImage/${single.image}`}
                    className=' w-10 h-10 rounded-full'
                    />
                    :

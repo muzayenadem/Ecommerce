@@ -30,7 +30,7 @@ const dispatch = useDispatch()
         e.preventDefault()
      
         try {
-          axios.post('http://localhost:4300/signup',{firstName,lastName,email,password,confirmPassword})
+          axios.post('https://ecommerce-8yhy.onrender.com/signup',{firstName,lastName,email,password,confirmPassword})
           .then(()=>{
             dispatch(noOpendSignup())
             dispatch(yesOpend())

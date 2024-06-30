@@ -31,7 +31,7 @@ function ProfileDrawbar({opened,nopend}) {
     }   
     const distpatch = useDispatch()  
     const logoutHandler = () =>{
-      axios.get('http://localhost:4300/logout')
+      axios.get('https://ecommerce-8yhy.onrender.com/logout')
      window.location='http://localhost:5173'
  
     }
@@ -53,7 +53,7 @@ function ProfileDrawbar({opened,nopend}) {
         <span onClick={()=>dispatch(noOpend())} >Login</span> */}
         {
           profile.image ?
-            <img onMouseOver={toggleDropDown}  src={`http://localhost:4300/UsersImage/${profile.image}`} className='w-10 h-10 rounded-full cursor-pointer' alt="" /> : 
+            <img onMouseOver={toggleDropDown}  src={`https://ecommerce-8yhy.onrender.com/UsersImage/${profile.image}`} className='w-10 h-10 rounded-full cursor-pointer' alt="" /> : 
             <div className='w-10 h-10 rounded-full cursor-pointer capitalize bg-neutral-900 text-white font-bold text-center '>
              <h1 onClick={toggleDropDown} className='text-center mt-2'> {profile.firstName}</h1>
             </div>
@@ -76,7 +76,7 @@ function ProfileDrawbar({opened,nopend}) {
                     <div className='w-full h-auto flex mb-5 justify-around'>
                     {
           profile.image ?
-            <img onClick={toggleDropDown} src={`http://localhost:4300/UsersImage/${profile.image}`} className='w-14 h-14 rounded-full cursor-pointer' alt="" /> : 
+            <img onClick={toggleDropDown} src={`https://ecommerce-8yhy.onrender.com/UsersImage/${profile.image}`} className='w-14 h-14 rounded-full cursor-pointer' alt="" /> : 
             <div className='w-14 h-14 rounded-full cursor-pointer capitalize bg-neutral-900 text-white font-bold text-center '>
              <h1 onClick={toggleDropDown} className='text-center text-2xl mt-3'> {profile.firstName[0]} {profile.lastName[0]}</h1>
             </div>

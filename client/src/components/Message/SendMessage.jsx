@@ -77,7 +77,7 @@ const sendMessageHandler  = async() =>{
           <div className="">
             {!user.image ? <div></div>
              :
-             <img src={`http://localhost:4300/UsersImage/${user.image}`}
+             <img src={`https://ecommerce-8yhy.onrender.com/UsersImage/${user.image}`}
             className='w-14 mr-5 mt-auto h-14 rounded-full'
            />
            }
@@ -100,12 +100,12 @@ const sendMessageHandler  = async() =>{
                 !user.image ? <div></div>
              :
              <div className=' flex  justify-start mt-5'>
-              <img src={`http://localhost:4300/UsersImage/${user.image}`}
+              <img src={`https://ecommerce-8yhy.onrender.com/${user.image}`}
             className='  w-8 mt-auto h-8 rounded-full'
            /> 
            <div className='max-w-sm  border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
             {
-            single.file  && (  <img src={`http://localhost:4300/MessagesFile/${single.file}`}
+            single.file  && (  <img src={`https://ecommerce-8yhy.onrender.com/MessagesFile/${single.file}`}
             className=' mt-auto rounded-xl m2'
            />)
            }
@@ -121,7 +121,7 @@ const sendMessageHandler  = async() =>{
            <div className='flex flex-wrap justify-start mt-5 float-left ml-auto '>
                 <div className='max-w-sm  border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
             {
-            single.file  && (  <img src={`http://localhost:4300/MessagesFile/${single.file}`}
+            single.file  && (  <img src={`https://ecommerce-8yhy.onrender.com/MessagesFile/${single.file}`}
             className=' mt-auto rounded-xl m2'
            />)
            }
@@ -132,7 +132,7 @@ const sendMessageHandler  = async() =>{
            }
            </div>
          
-              <img src={`http://localhost:4300/UsersImage/${profile.image}`}
+              <img src={`https://ecommerce-8yhy.onrender.com/UsersImage/${profile.image}`}
             className='w-8 h-8 rounded-full mt-auto ml-2'
            /> 
              </div>
