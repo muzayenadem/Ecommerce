@@ -10,7 +10,7 @@ function UsersForMessage() {
 
     const searchHandler =async (value) =>{
       try {
-       await axios.get('http://localhost:4300/searchuserformessage'+value)
+       await axios.get('https://ecommerce-8yhy.onrender.com/searchuserformessage'+value)
        .then(result =>{
        setAllUsers(result.data.searchedUsers)
        console.log(result.data)

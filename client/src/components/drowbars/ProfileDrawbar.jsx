@@ -36,7 +36,7 @@ function ProfileDrawbar({opened,nopend}) {
  
     }
     useEffect(()=>{
-      axios.get('http://localhost:4300/profiledata')
+      axios.get('https://ecommerce-8yhy.onrender.com/profiledata')
       .then(result => setProfile(result.data.userData))
       .catch(err => setProfile(err.message))
   },[])

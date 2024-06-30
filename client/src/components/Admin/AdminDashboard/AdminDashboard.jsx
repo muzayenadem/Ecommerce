@@ -14,7 +14,7 @@ function AdminDashboard() {
 const [adminprofile,setAdminProfile] = useState({}) 
 const [isTrue, setIsTrue] = useState(false) 
 useEffect(()=>{
-  axios.get('http://localhost:4300/adminprofile')
+  axios.get('https://ecommerce-8yhy.onrender.com/adminprofile')
   .then(result =>{
     setAdminProfile(result.data)
   })

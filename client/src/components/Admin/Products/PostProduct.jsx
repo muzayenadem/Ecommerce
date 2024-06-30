@@ -25,7 +25,7 @@ const [profileSpace,setProfileSpace] = useState('')
       formData.append('images',images[i])
     }
     try {
-      await axios.post('http://localhost:4300/addproduct',
+      await axios.post('https://ecommerce-8yhy.onrender.com/addproduct',
       formData
       ,{
         headers:{

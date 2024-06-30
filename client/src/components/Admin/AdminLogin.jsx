@@ -11,9 +11,9 @@ function AdminLogin() {
         e.preventDefault()
         console.log(email, password)
         try {
-            axios.post('http://localhost:4300/adminlogin',{email,password})
+            axios.post('https://ecommerce-8yhy.onrender.com/adminlogin',{email,password})
             .then(()=>
-            window.location = 'http://localhost:5173/admindashboard'
+            window.location = 'https://ecommerce-8yhy.onrender.com/admindashboard'
            // console.log('this is successfy sent to server')
             
           )

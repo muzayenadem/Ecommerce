@@ -11,7 +11,7 @@ const initialState = {
 
 
 export const fetchProfileData = createAsyncThunk('profileData/fetchProfileData',()=>{
-   return axios.get('http://localhost:4300/profiledata')
+   return axios.get('https://ecommerce-8yhy.onrender.com/profiledata')
    .then((result) =>{
       return result.data
    })

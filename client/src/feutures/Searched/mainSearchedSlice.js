@@ -11,7 +11,7 @@ const initialState = {
 
 
 export const fetchMainSearchedData = createAsyncThunk('mainSearchedData/fetchMainSearchedData',(value)=>{
-   return axios.get('http://localhost:4300/searchproductcategory'+value)
+   return axios.get('https://ecommerce-8yhy.onrender.com/searchproductcategory'+value)
    .then((result) =>{
       return result.data
    })

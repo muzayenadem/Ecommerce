@@ -6,7 +6,7 @@ function CartS() {
     const {singleUserId} = useParams()
     useEffect(()=>{
         try {
-            axios.get('http://localhost:4300/singleuserdata'+singleUserId)
+            axios.get('https://ecommerce-8yhy.onrender.com/singleuserdata'+singleUserId)
             .then(result=>{
                 setProducts(result.data.productsInCart)
             })
@@ -31,7 +31,7 @@ function CartS() {
             {
                 products.map((single,i)=>{
                     return <div key={i} className='p-5 bg-slate-300 m-4 rounded-md '>
-                        <img src={`http://localhost:4300/ProductsImage/${single.image}`}
+                        <img src={`https://ecommerce-8yhy.onrender.com/ProductsImage/${single.image}`}
                         className='w-20 h-24 rounded-md'
                         />
                     </div>

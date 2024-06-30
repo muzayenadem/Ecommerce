@@ -17,7 +17,7 @@ function AdminProfile() {
     let [imageSpace,setImageSpace] = useState('')
    useEffect(()=>{
     try {
-        axios.get('http://localhost:4300/adminprofile')
+        axios.get('https://ecommerce-8yhy.onrender.com/adminprofile')
         .then((result)=> setAdminProfile(result.data))
         .catch(err => setAdminProfile(err.data))
     } catch (error) {
@@ -41,7 +41,7 @@ function AdminProfile() {
     formData.append('adminId',adminProfile._id)
     try {
       await axios.post(
-        `http://localhost:4300/updateadminprofile`,
+        `https://ecommerce-8yhy.onrender.com/updateadminprofile`,
          formData,
         {
           headers:{
@@ -130,7 +130,7 @@ function AdminProfile() {
         <div>
           <img 
           className='w-28 h-28 rounded-full items-center ml-6'
-     src={`http://localhost:4300/UsersImage/${adminProfile.image}`}   
+     src={`https://ecommerce-8yhy.onrender.com/UsersImage/${adminProfile.image}`}   
      />
         </div>
 }

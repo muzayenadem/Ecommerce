@@ -22,7 +22,7 @@ function SingleProduct() {
     const [bigPicture, setBigPicture] = useState(null)
     const [quantity, setQuantity] = useState(1)
     useEffect(()=>{
-        axios.get('http://localhost:4300/singleproduct'+productId)
+        axios.get('https://ecommerce-8yhy.onrender.com/singleproduct'+productId)
         .then(result => {
           setProducts(result.data.product)
           setReleatedProducts(result.data.releatedProducts)
@@ -70,7 +70,7 @@ function SingleProduct() {
 
     const addCart = async()=>{
       try {
-        await axios.post('http://localhost:4300/addcartto',{})
+        await axios.post('https://ecommerce-8yhy.onrender.com/addcartto',{})
       } catch (error) {
         console.log(error.message)
       }
@@ -103,7 +103,7 @@ function SingleProduct() {
     // user data
     useEffect(()=>{
       try {
-        axios.get('http://localhost:4300/profiledata')
+        axios.get('https://ecommerce-8yhy.onrender.com/profiledata')
         .then(result =>{
           setUser(result.data.userData)
         }) 
@@ -118,7 +118,7 @@ function SingleProduct() {
 const sendCart = () =>{
   try {
     const color = 'red'
-    axios.put('http://localhost:4300/addcart',{productId:product._id,userId:user._id,color,quantity})
+    axios.put('https://ecommerce-8yhy.onrender.com/addcart',{productId:product._id,userId:user._id,color,quantity})
     .then((result)=>{
       //console.log('succsesesd')
       window.location = 'http://localhost:5173/profile/my-carts'
@@ -167,7 +167,7 @@ const sendCart = () =>{
         <div className='w-[25%] flex flex-wrap justify-around'>
           <img 
           className='w-20 h-24 rounded-md'
-          src={`http://localhost:4300/ProductsImage/${product.image}`}/>
+          src={`https://ecommerce-8yhy.onrender.com/ProductsImage/${product.image}`}/>
           <div className=''>
             <h1>{product.name}</h1>
             <h1>{product.title}</h1>
@@ -229,7 +229,7 @@ const sendCart = () =>{
         <div>
           <img 
           className='w-11/12 h-96'
-          src={`http://localhost:4300/ProductsImage/${bigPicture}`} 
+          src={`https://ecommerce-8yhy.onrender.com/ProductsImage/${bigPicture}`} 
           alt="" />
         </div>
         <div className=' grid grid-cols-2 gap-2'>
@@ -239,7 +239,7 @@ const sendCart = () =>{
              <img
              onClick={()=>setBigPicture(s)}
         className=' items-centessr ml-[16.5%] w-36 h-36'
-        src={`http://localhost:4300/ProductsImage/${s}`} 
+        src={`https://ecommerce-8yhy.onrender.com/ProductsImage/${s}`} 
         alt="no connection" />
           </div>
         })
@@ -281,9 +281,9 @@ const sendCart = () =>{
               className='w-11/12 h-[100vh] md:h-[50vh]  items-center self-center  -2 m-6 '
               src={
                 single.image.value == String ? 
-                `http://localhost:4300/ProductsImage/${single.image}`
+                `https://ecommerce-8yhy.onrender.com/ProductsImage/${single.image}`
                 :
-                `http://localhost:4300/ProductsImage/${single.image[0]}`
+                `https://ecommerce-8yhy.onrender.com/ProductsImage/${single.image[0]}`
                 } alt="" />
             </div>)
           }) :null

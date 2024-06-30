@@ -19,7 +19,7 @@ const [fromServer, setFromServer] = useState('')
 // console.log(productToken)
 const searchHandler =async () =>{
  try {
-  await axios.get('http://localhost:4300/searchproductcategory'+value)
+  await axios.get('https://ecommerce-8yhy.onrender.com/searchproductcategory'+value)
   .then(result => setAllProducts(result.data))
   .catch(err => setSearchedProduct(err.message))
  } catch (error) {
@@ -27,14 +27,14 @@ const searchHandler =async () =>{
  }
 }
 useEffect(()=>{
-  axios.get('http://localhost:4300/products')
+  axios.get('https://ecommerce-8yhy.onrender.com/products')
   .then(result => setAllProducts(result.data))
   .catch(err => setAllProducts(err.message))
 },[])
 
 const sendIdForServer = async() =>{
   try {
-    await axios.delete('http://localhost:4300/delete'+userId)
+    await axios.delete('https://ecommerce-8yhy.onrender.com/delete'+userId)
     .then(result => {
       setOpen(false)
       setFromServer(result.data)

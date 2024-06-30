@@ -11,7 +11,7 @@ function AdminSidebar() {
     const [isTrue, setIsTrue] = useState(false) 
 
 useEffect(()=>{
-  axios.get('http://localhost:4300/adminprofile')
+  axios.get('https://ecommerce-8yhy.onrender.com/adminprofile')
   .then(result =>{
     setAdminProfile(result.data)
   })
@@ -43,7 +43,7 @@ console.log(adminToken)
             >
               <img 
               className='w-36 h-36 rounded-full items-center ml-[20%]'
-              src={`http://localhost:4300/UsersImage/${adminprofile.image}`} 
+              src={`https://ecommerce-8yhy.onrender.com/UsersImage/${adminprofile.image}`} 
               alt="no connection" />
               <h1
               className='font-light text-center text-md m-2'

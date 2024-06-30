@@ -11,7 +11,7 @@ function Dashboard() {
 const [profile,setProfile] = useState({}) 
 const [isTrue, setIsTrue] = useState(false) 
 useEffect(()=>{
-  axios.get('http://localhost:4300/profileData')
+  axios.get('https://ecommerce-8yhy.onrender.com/profileData')
   .then(result =>{
     setProfile(result.data.userData)
   })

@@ -30,7 +30,7 @@ const navigate = useNavigate()
 
 // const {productId} = useParams()
 useEffect(()=>{
-    axios.get('http://localhost:4300/profiledata')
+    axios.get('https://ecommerce-8yhy.onrender.com/profiledata')
     .then(result => setProfile(result.data.userData))
     .catch(err => setProfile(err.message))
 },[])
@@ -79,7 +79,7 @@ useEffect(()=>{
     formData.append('userId',profile._id)
     try {
       await axios.post(
-        `http://localhost:4300/updateprofile`,
+        `https://ecommerce-8yhy.onrender.com/updateprofile`,
          formData,
         {
           headers:{
@@ -140,7 +140,7 @@ useEffect(()=>{
         </dialog>
         <div>
         <h1 className='text-center m-4'>Choice beautifull picture and well defined discription for your product</h1> 
-          <img onClick={()=> setImageDialoge(true)} className='w-20 h-20 rounded-full' src={`http://localhost:4300/UsersImage/${profile.image}`} />
+          <img onClick={()=> setImageDialoge(true)} className='w-20 h-20 rounded-full' src={`https://ecommerce-8yhy.onrender.com/UsersImage/${profile.image}`} />
           <form onSubmit={submitHandler}>
        
           <label htmlFor='name' className='m-4'> Name</label>

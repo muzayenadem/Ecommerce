@@ -5,7 +5,7 @@ function ProductsInCart() {
     const [products, setProducts] = useState([])
     
     useEffect(()=>{
-        axios.get('http://localhost:4300/profileData')
+        axios.get('https://ecommerce-8yhy.onrender.com/profileData')
         .then(result =>{
             setProducts(result.data.productsInCart)
             console.log(products)
@@ -20,7 +20,7 @@ function ProductsInCart() {
                 {
             products.map((single,i)=>{
                 return <div key={i} className='w-[60%] flex  justify-between h-auto bg-slate-100 p-3 m-2'>
-               <img src={`http://localhost:4300/ProductsImage/${single.image}`}
+               <img src={`https://ecommerce-8yhy.onrender.com/ProductsImage/${single.image}`}
                className='w-20 h-24 rounded-md'
                />
                <div className='ml-8 mt-2 '>

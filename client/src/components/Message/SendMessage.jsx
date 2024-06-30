@@ -12,7 +12,7 @@ function SendMessage() {
   const [message, setMessage] = useState('')
   useEffect(()=>{
     try {
-      axios.get('http://localhost:4300/profiledata')
+      axios.get('https://ecommerce-8yhy.onrender.com/profiledata')
       .then((res)=>{
         setProfile(res.data.userData)
       })
@@ -22,7 +22,7 @@ function SendMessage() {
   },[])
   useEffect(()=>{
     try {
-        axios.get('http://localhost:4300/usermessagedata'+messageId)
+        axios.get('https://ecommerce-8yhy.onrender.com/usermessagedata'+messageId)
         .then(result=>{
             setUser(result.data.singleuserdata)
             setChat(result.data.chat)
@@ -47,7 +47,7 @@ const sendMessageHandler  = async() =>{
     }
 
     await axios.post(
-      `http://localhost:4300/sendmessage`,
+      `https://ecommerce-8yhy.onrender.com/sendmessage`,
        formData,
       {
         headers:{
@@ -169,7 +169,7 @@ const sendMessageHandler  = async() =>{
        <div className=' w-[20%] '>
         <div className='mt-[15%]'>
           {user.image ? 
-            <img src={`http://localhost:4300/UsersImage/${user.image}`}
+            <img src={`https://ecommerce-8yhy.onrender.com/UsersImage/${user.image}`}
             className='  w-28 mt-auto h-28 ml-[20%] rounded-full'
            /> :
           <div className=' bg-orange-500 w-28 h-38 rounded-full align-middle text-white font-bold text-center'>{user.firstName}</div>

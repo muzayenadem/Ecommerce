@@ -7,7 +7,7 @@ function SingleUserData() {
     const {singleUserId} = useParams()
     useEffect(()=>{
         try {
-            axios.get('http://localhost:4300/singleuserdata'+singleUserId)
+            axios.get('https://ecommerce-8yhy.onrender.com/singleuserdata'+singleUserId)
             .then(result=>{
                 setSingleUserData(result.data.singleuserdata)
             })
@@ -26,7 +26,7 @@ function SingleUserData() {
                 <Link to={`/admindashboard/allusers/${singleUserData._id}`}>
             {
                     singleUserData.image ? 
-                    <img src={`http://localhost:4300/UsersImage/${singleUserData.image}`}
+                    <img src={`https://ecommerce-8yhy.onrender.com/UsersImage/${singleUserData.image}`}
                    className='w-16 h-16 ml-5 mb-2 rounded-full'
                    />
                    :

@@ -9,7 +9,7 @@ function UsersList() {
 
     const navigate = useNavigate('')
     useEffect(()=>{
-        axios.get('http://localhost:4300/allusers')
+        axios.get('https://ecommerce-8yhy.onrender.com/allusers')
         .then(result =>{
             setAllUsers(result.data.allusers)
             setAdmin(result.data.adminer)
@@ -21,7 +21,7 @@ function UsersList() {
 
     const singleUserData = async(id)=>{
         try {
-          await axios.get('http://localhost:4300/singleuserdata'+id)
+          await axios.get('https://ecommerce-8yhy.onrender.com/singleuserdata'+id)
           .then(()=>{
             console.log('succeed')
             navigate(id)
@@ -46,7 +46,7 @@ function UsersList() {
                     <div >
                   {
                     single.image ? 
-                    <img src={`http://localhost:4300/UsersImage/${single.image}`}
+                    <img src={`https://ecommerce-8yhy.onrender.com/UsersImage/${single.image}`}
                    className='w-16 h-16 rounded-full'
                    />
                    :

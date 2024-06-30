@@ -25,7 +25,7 @@ const navigate = useNavigate()
 
 const {productId} = useParams()
 useEffect(()=>{
-    axios.get('http://localhost:4300/singleproduct'+productId)
+    axios.get('https://ecommerce-8yhy.onrender.com/singleproduct'+productId)
     .then(result => setProducts(result.data.product))
     .catch(err => setProducts(err.message))
 },[])
@@ -42,7 +42,7 @@ useEffect(()=>{
     formData.append('userId',products._id)
     try {
       await axios.post(
-        `http://localhost:4300/updateproduct`,
+        `https://ecommerce-8yhy.onrender.com/updateproduct`,
          formData,
         {
           headers:{
@@ -79,7 +79,7 @@ useEffect(()=>{
         </dialog>
         <div>
         <h1 className='text-center m-4'>Choice beautifull picture and well defined discription for your product</h1> 
-          <img className='w-20 h-20 rounded-full' src={`http://localhost:4300/ProductsImage/${products.image}`} />
+          <img className='w-20 h-20 rounded-full' src={`https://ecommerce-8yhy.onrender.com/ProductsImage/${products.image}`} />
           <form onSubmit={submitHandler}>
           <label htmlFor='image' className='m-4'>Product Image</label>
           <br/>

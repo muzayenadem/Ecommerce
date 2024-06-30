@@ -8,7 +8,7 @@ function DashboardSidebar() {
   const [profile,setProfile] = useState({}) 
 const [isTrue, setIsTrue] = useState(false) 
 useEffect(()=>{
-  axios.get('http://localhost:4300/profileData')
+  axios.get('https://ecommerce-8yhy.onrender.com/profileData')
   .then(result =>{
     setProfile(result.data.userData)
   })
@@ -31,7 +31,7 @@ useEffect(()=>{
             >
               <img 
               className='w-36 h-36 rounded-full items-center ml-[20%]'
-              src={`http://localhost:4300/UsersImage/${profile.image}`} 
+              src={`https://ecommerce-8yhy.onrender.com/UsersImage/${profile.image}`} 
               alt="no connection" />
               <h1
               className='font-bold text-2xl text-center m-3'
