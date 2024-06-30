@@ -40,8 +40,8 @@ app.use(express.static('Files'))
 //     credentials:true
 //    }))
 const allowedOrigins = [
-    'https://my-ecommerce-dtcm9m04k-muzayen.vercel.app', // Replace with your actual Vercel domain
-    'https://my-ecommerce-hnyi3091v-muzayen.vercel.app/' // Add any custom domains you use
+    'https://your-vercel-app.vercel.app', // Replace with your actual Vercel domain
+    'https://your-custom-domain.com' // Add any custom domains you use
   ];
   
   const corsOptions = {
@@ -54,7 +54,11 @@ const allowedOrigins = [
     }
   };
   
-app.use(cors(corsOptions));
+  app.use(cors(corsOptions));
+app.use(cors({
+    origin: ['https://my-ecommerce-dtcm9m04k-muzayen.vercel.app','my-ecommerce-dtcm9m04k-muzayen.vercel.app/:1'],
+    credentials:true
+}));
 app.use(cookieParser())
 app.use(express.urlencoded({extended: true}))
 
