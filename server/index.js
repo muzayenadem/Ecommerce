@@ -35,8 +35,12 @@ const app = express()
 app.use(express.json())
 app.use(bodyParser.json())
 app.use(express.static('Files'))
+// app.use(cors({
+//     origin:['http://localhost:5174','http://localhost:5173'],
+//     credentials:true
+//    }))
 app.use(cors({
-    origin:['http://localhost:5174','http://localhost:5173'],
+    origin:['https://my-ecommerce-e8745zc3g-muzayen.vercel.app','http://localhost:5173'],
     credentials:true
    }))
 app.use(cookieParser())
