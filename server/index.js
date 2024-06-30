@@ -40,8 +40,7 @@ app.use(express.static('Files'))
 //     credentials:true
 //    }))
 const allowedOrigins = [
-    'https://your-vercel-app.vercel.app', // Replace with your actual Vercel domain
-    'https://your-custom-domain.com' // Add any custom domains you use
+    'https://my-ecommerce-git-ecommerce-muzayen.vercel.app/'
   ];
   
   const corsOptions = {
