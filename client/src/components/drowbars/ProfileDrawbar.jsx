@@ -108,7 +108,7 @@ function ProfileDrawbar({opened,nopend}) {
                       distpatch(yesOpendAdminLogin())
                     }} className='block px-4 py-2 mt-5 mb-5 text-gray-700 hover:bg-gray-100 font-bold text-xl' >Membership programm</i>
                     <hr></hr>
-                    <i onClick={logoutHandler} className='block px-4 py-2  text-gray-700 hover:bg-gray-100 font-bold text-xl' >Sign out</i>
+                    <p onClick={logoutHandler} className='block px-4 py-2  text-gray-700 hover:bg-gray-100 font-bold text-xl' >Sign out</p>
                    
                   </div>
                 </div>
