@@ -145,7 +145,7 @@ const sendMessageHandler  = async() =>{
        </div>
        <hr/>
        <div className=' sticky bottom-0 bg-white'>
-       <form onSubmit={sendMessageHandler} className='flex'>
+       <div className='flex'>
         <textarea 
           className='text-left py-3 ml-1 px-3  md:w-[80%]   shadow-md focus:outline-none border-b-2'
           placeholder='write message'
@@ -155,8 +155,8 @@ const sendMessageHandler  = async() =>{
         <input type="file" style={{ display: 'none' }} onChange={(e) => setFile(e.target.files[0])} />
   
         </label>
-      <button  type="submit"><IoSend className='text-2xl ml-6 '/></button>
-    </form>
+      <button onClick={sendMessageHandler} type="submit"><IoSend className='text-2xl ml-6 '/></button>
+    </div>
         {/* <input 
         type='text'
         placeholder='write message'
