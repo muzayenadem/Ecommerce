@@ -5,6 +5,7 @@ const sendMessage = async(req,res) =>{
    try {
     const userToken = req.cookies.user
     const {receiver,text} = req.body
+    console.log({receiver,text})
     const assure = req.file == undefined ? true : false
    let file 
     if(!assure){
@@ -19,19 +20,19 @@ const sendMessage = async(req,res) =>{
     const verify = jwt.verify(userToken,process.env.PASSWORD)
     const sender = verify.userId
     if(!verify){
-      console.log('not authanticated')
+    console.log('not authanticated')
     return res.status(404).send('this is not authorized')
     }
     const user = await usersModel.findOne({_id:verify.userId})
     const anotherUser = await usersModel.findOne({_id:receiver})
 
     if(!user){
-      console.log('no user with this token')
+    console.log('no user with this token')
     return res.status(404).send('there is no user with this token')
     }
 
     if(!anotherUser){
-      console.log('not another user')
+    console.log('not another user')
     return res.status(404).send('there is another  user with this id')
   }
   let conversation = await messageModel.findOne({ participants: { $all: [sender, receiver] } });
