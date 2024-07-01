@@ -21,11 +21,11 @@ const  userLogin = async(req,res)=>{
          const token = jwt.sign({userId:user._id},process.env.PASSWORD,{expiresIn:'1h'});
          //res.cookie('user',token,{httpOnly :true}).send()
          res.cookie('user', token, {
-            maxAge: 24 * 60 * 60,
+            maxAge: 24 * 60 * 60 * 1000,
             httpOnly: true,
-            //secure: true,
+            secure: true,
             sameSite: 'None',
-            domain: 'ecommerce-8yhy.onrender.com', 
+           // domain: 'ecommerce-8yhy.onrender.com', 
             path: '/'
         });
          res.status(200).json({ message: 'Logged in successfully' });
