@@ -36,7 +36,7 @@ function ProfileDrawbar({opened,nopend}) {
         const response = await axios.post('https://ecommerce-8yhy.onrender.com/logout');
         console.log(response.data);
         // Remove the token cookie from the client side
-        Cookies.remove('token', { path: '/' });
+        Cookies.remove('user', { path: '/' });
         navigate('/')
       } catch (error) {
         console.error('There was a problem with the logout request:', error);
