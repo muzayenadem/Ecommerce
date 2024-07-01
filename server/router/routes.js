@@ -25,6 +25,7 @@ const addProductToCart = require('../controll/ProductsApi/addProductToCart')
 const searchUserForMessage = require('../controll/Message/searchUserForMessage')
 const userMessageData = require('../controll/Message/userMessageData')
 const sendMessage = require('../controll/Message/sendMessage')
+const userLogout = require('../controll/userLogout')
 // to store the products image
 const productImageStorage = multer.diskStorage({
     destination:function(req,file,cb){
@@ -89,32 +90,7 @@ router.route('/searchproductcategory:id').get(searchProductCategory)
 router.route('/searchuserformessage:id').get(searchUserForMessage)
 router.route('/singleuserdata:id').get(adminAuth,singleUserData)
 router.route('/usermessagedata:id').get(auth,userMessageData)
-// router.route('/logout').get((req,res)=>{
-//     res.cookie("user","",{
-//         httpOnly:true,
-//         expires:new Date(0)
-//     }).send();
-//     console.log('logged out')
-// })
-
-router.route('/logout').get((req,res)=>{
-    res.clearCookie('user', { path: '/' });
-    res.cookie('user','let see if succed', {
-        maxAge: 24 * 60 * 60 * 1000,
-        httpOnly: true,
-        secure: true,
-        sameSite: 'None',
-        path: '/'
-    });
-    const userToken = req.cookies.user
-    res.status(200).json({ message: 'Logged out successfully' });
-    console.log('Logged out successfully')
-    console.log({userToken})
-    req.cookies.user = 'not cookies'
-    const deletedtoken = req.cookies.user
-    console.log({deletedtoken})
-
-})
+router.route('/logout').get(userLogout)
 router.route('/logoutAdmin').get((req,res)=>{
     res.cookie("adminLoginToken","",{
         httpOnly:true,
