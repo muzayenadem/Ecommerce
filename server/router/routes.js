@@ -89,12 +89,18 @@ router.route('/searchproductcategory:id').get(searchProductCategory)
 router.route('/searchuserformessage:id').get(searchUserForMessage)
 router.route('/singleuserdata:id').get(adminAuth,singleUserData)
 router.route('/usermessagedata:id').get(auth,userMessageData)
+// router.route('/logout').get((req,res)=>{
+//     res.cookie("user","",{
+//         httpOnly:true,
+//         expires:new Date(0)
+//     }).send();
+//     console.log('logged out')
+// })
+
 router.route('/logout').get((req,res)=>{
-    res.cookie("user","",{
-        httpOnly:true,
-        expires:new Date(0)
-    }).send();
-    console.log('logged out')
+    res.clearCookie('token', { path: '/' });
+    res.status(200).json({ message: 'Logged out successfully' });
+    console.log('Logged out successfully')
 })
 router.route('/logoutAdmin').get((req,res)=>{
     res.cookie("adminLoginToken","",{
