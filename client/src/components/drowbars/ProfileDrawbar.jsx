@@ -34,7 +34,7 @@ function ProfileDrawbar({opened,nopend}) {
     const logoutHandler = () =>{
       axios.get('https://ecommerce-8yhy.onrender.com/logout')
       // navigate('/')
-      window.location = 'https:ezasc.vercel.app'
+      window.location = 'https://ezasc.vercel.app'
     }
     useEffect(()=>{
       axios.get('https://ecommerce-8yhy.onrender.com/profiledata')
