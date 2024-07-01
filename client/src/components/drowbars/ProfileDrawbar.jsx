@@ -10,7 +10,7 @@ import { yesOpend,noOpend } from '../../feutures/drobarStates/loginState'
 import { fetchToken } from '../../feutures/Tokens/tokenSlice'
 import { yesOpendAdminLogin,noOpendAdminLogin } from '../../feutures/drobarStates/AdminLoginSlice'
 import { fetchProfileData } from '../../feutures/data/profileData'
-
+import cookies from 'js-cookie'
 
 function ProfileDrawbar({opened,nopend}) {
 
@@ -31,11 +31,18 @@ function ProfileDrawbar({opened,nopend}) {
     }   
     const distpatch = useDispatch()  
     const navigate = useNavigate('')
-    const logoutHandler = () =>{
-      axios.get('https://ecommerce-8yhy.onrender.com/logout')
-       navigate('/')
-      //window.location = 'https://ezasc.vercel.app'
-    }
+    const logoutHandler = async () => {
+      try {
+        const response = await axios.post('https://ecommerce-8yhy.onrender.com/logout');
+        console.log(response.data);
+        // Remove the token cookie from the client side
+        Cookies.remove('token', { path: '/' });
+        navigate('/')
+      } catch (error) {
+        console.error('There was a problem with the logout request:', error);
+      }
+    };
+    
     useEffect(()=>{
       axios.get('https://ecommerce-8yhy.onrender.com/profiledata')
       .then(result => setProfile(result.data.userData))

@@ -97,7 +97,7 @@ router.route('/usermessagedata:id').get(auth,userMessageData)
 //     console.log('logged out')
 // })
 
-router.route('/logout').get((req,res)=>{
+router.route('/logout').post((req,res)=>{
     res.clearCookie('user', { path: '/' });
     res.status(200).json({ message: 'Logged out successfully' });
     console.log('Logged out successfully')
