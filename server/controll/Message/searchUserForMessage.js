@@ -11,7 +11,6 @@ async function searchUserForMessage(req,res){
         return res.status(402).send('there is no an product with this id')
 
         res.status(200).send({searchedUsers,allUsers})
-        console.log({searchedUsers,allUsers})
     } catch (error) {
         res.status(5000).send(error.message)
         console.log(error)
