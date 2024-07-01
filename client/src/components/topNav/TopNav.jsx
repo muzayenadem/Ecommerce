@@ -30,7 +30,7 @@ function TopNav({str}) {
       setUserData(res.data)
     })
     .catch(err =>{
-      setUserData({error:err.message})
+      setUserData({error:err})
     })
   },[])
   console.log({userData})
