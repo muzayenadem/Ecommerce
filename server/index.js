@@ -40,9 +40,10 @@ app.use(cors({
     //
      credentials:true,
      methods: 'GET,POST,PUT,DELETE',
-     allowedHeaders: 'Content-Type,Authorization'
+     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
    }))
 
+   app.options('/sendmessage', cors()); // enable pre-flight requests
 
 // const allowedOrigins = [
 //     'https://ecommerce-client-coral.vercel.app'
