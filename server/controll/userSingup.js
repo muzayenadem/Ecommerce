@@ -31,10 +31,13 @@ async function userSingup(req,res){
 
 
         const token = jwt.sign({token:savedUser._id},process.env.PASSWORD)
-        res.cookie('user',token,{
-            httpOnly: true
-         }).send()
-
+        res.cookie('user', token, {
+            maxAge: 24 * 60 * 60 * 1000,
+            httpOnly: true,
+            secure: true,
+            sameSite: 'None',
+            path: '/'
+        });
         console.log(token)
     } catch (error) {
         res.status(500).json({error:error})

@@ -35,9 +35,13 @@ async function adminAdd(req,res){
 
 
         const token = jwt.sign({token:savedAdmin._id},process.env.ADMINPASSWORD)
-        res.cookie('token',token,{
-            httpOnly: true
-         }).send()
+        res.cookie('token', token, {
+            maxAge: 24 * 60 * 60 * 1000,
+            httpOnly: true,
+            secure: true,
+            sameSite: 'None',
+            path: '/'
+        });
 
         console.log(token)
     } catch (error) {
