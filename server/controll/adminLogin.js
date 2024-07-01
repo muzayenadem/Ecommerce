@@ -6,7 +6,7 @@ const  adminLogin = async(req,res)=>{
     try {
          const {email,password} = req.body
          if(!email || !password) 
-         return res.status(4001).json({error:'please fill all data'})
+         return res.status(401).json({error:'please fill all data'})
 
          const checkAdmin = await adminModel.findOne({email})
 
