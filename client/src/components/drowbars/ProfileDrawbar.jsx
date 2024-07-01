@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import {useNavigate } from 'react-router-dom'
 
 import { Link } from 'react-router-dom'
 import logo from './br1.jpg'
@@ -36,8 +36,8 @@ function ProfileDrawbar({opened,nopend}) {
         const response = await axios.get('https://ecommerce-8yhy.onrender.com/logout');
         console.log(response.data);
         // Remove the token cookie from the client side
-        Cookies.remove('user', { path: '/' });
-        window.location= 'https://facebook.com'
+       // Cookies.remove('user', { path: '/' });
+        window.location.href = '/'
       } catch (error) {
         console.error('There was a problem with the logout request:', error);
       }

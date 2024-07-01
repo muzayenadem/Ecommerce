@@ -14,7 +14,7 @@ function Login() {
      try {
        axios.post('https://ecommerce-8yhy.onrender.com/login',{email,password})
        .then(()=>{
-          navigate('/')
+          window.location.href= '/'
        })
        .catch((err)=>{
           console.log(err.message)

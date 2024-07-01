@@ -13,7 +13,7 @@ function AdminLogin() {
         try {
             axios.post('https://ecommerce-8yhy.onrender.com/adminlogin',{email,password})
             .then(()=>
-            navigate('/admindashboard')
+            window.location.href = '/admindashboard'
            // console.log('this is successfy sent to server')
             
           )
