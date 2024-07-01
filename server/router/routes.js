@@ -99,8 +99,10 @@ router.route('/usermessagedata:id').get(auth,userMessageData)
 
 router.route('/logout').get((req,res)=>{
     res.clearCookie('user', { path: '/' });
+    const token = req.cookies.user
     res.status(200).json({ message: 'Logged out successfully' });
     console.log('Logged out successfully')
+    console.log({token})
 })
 router.route('/logoutAdmin').get((req,res)=>{
     res.cookie("adminLoginToken","",{
