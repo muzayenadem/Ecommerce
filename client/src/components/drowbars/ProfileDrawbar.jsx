@@ -37,7 +37,7 @@ function ProfileDrawbar({opened,nopend}) {
         console.log(response.data);
         // Remove the token cookie from the client side
         Cookies.remove('user', { path: '/' });
-        window.location= 'https://ezasco.vercel.app'
+        window.location= 'https://facebook.com'
       } catch (error) {
         console.error('There was a problem with the logout request:', error);
       }
