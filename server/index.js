@@ -36,8 +36,8 @@ app.use(express.json())
 app.use(bodyParser.json())
 app.use(express.static('Files'))
 app.use(cors({
-    origin:['https://ezasco.vercel.app','http://localhost:5173'],
-    //'https://ezasco-git-ecommerce-muzayen.vercel.app'
+    origin:['https://ezasco.vercel.app','http://localhost:5173','https://ezasco-git-ecommerce-muzayen.vercel.app'],
+    //
      credentials:true,
      methods: 'GET,POST,PUT,DELETE',
      allowedHeaders: 'Content-Type,Authorization'
