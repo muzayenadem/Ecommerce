@@ -20,7 +20,7 @@ const addProduct = async(req,res)=>{
 // Route for uploading multiple images
     if (!req.files) {
     //   return res.status(400).send('No files were uploaded.');
-    console.log('rhhhhhh')
+    console.log('product with no file')
     }
     
         const images = req.files.map(file => file.filename);
@@ -29,7 +29,6 @@ const addProduct = async(req,res)=>{
         if(!name || !price || !title)
         return res.status(401).json({err:'fill all required data'})
 
-console.log(images)
 
         const newProduct = new productModel({
             image:images,
@@ -43,7 +42,7 @@ console.log(images)
         })
 
         const savingProduct = await newProduct.save()
-        console.log(savingProduct)
+   
         res.send('succesfull submitted')
 
     } catch (error) {

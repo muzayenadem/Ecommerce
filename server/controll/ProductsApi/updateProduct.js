@@ -24,10 +24,9 @@ const updateProduct = async(req,res)=>{
                 {new:true}
             )
             if(updatedProduct){
-                console.log(updatedProduct)
                res.status(200).send('the product is succesfully updated')
                } else
-               console.log('errrrrr')
+               console.log('product not updated')
         }
         else{
         const updatedProduct = await productModel.findOneAndUpdate(
@@ -43,10 +42,9 @@ const updateProduct = async(req,res)=>{
             {new:true}       
         )
         if(updatedProduct){
-            console.log(updatedProduct)
            res.status(200).send('the product is succesfully updated')
            } else
-           console.log('errrrrr')
+           console.log('product not update')
         }
     } catch (error) {
         res.status(500).json({error:error})

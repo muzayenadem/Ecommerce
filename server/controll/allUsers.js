@@ -5,8 +5,7 @@ const allUsers = async(req,res) =>{
     try {
         const adminToken = req.cookies.adminLoginToken
         const verify = jwt.verify(adminToken,process.env.ADMINPASSWORD)
-
-        if(!verify)
+      
         return res.status('not authanticated')
 
         const adminer = await adminModel.findOne({_id:verify.adminId})

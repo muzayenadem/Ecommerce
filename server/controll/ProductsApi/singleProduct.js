@@ -18,7 +18,6 @@ async function singleProduc(req,res){
          const releatedProducts = await productModel.find({$or:[{category:regexCategory}, {name:regexName},{tags:regexTags}]} )
         // const releatedProducts = await productModel.find({tags:regexTags})
         res.status(200).send({product,releatedProducts,pictures:product.image})
-        console.log(product)
     } catch (error) {
         res.status(5000).send(error.message)
         console.log(error)

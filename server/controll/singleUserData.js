@@ -25,9 +25,9 @@ const singleUserData = async(req,res) =>{
       return res.status(200).send({singleuserdata})
       }
       
-      console.log(cart)
+    
       productsInCart = await productModel.find({_id:cart.products})
-      console.log({productsInCart})
+   
       return res.status(200).send({singleuserdata,productsInCart})
     } catch (error) {
       console.log(error.message)

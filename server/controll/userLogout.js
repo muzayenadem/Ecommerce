@@ -13,8 +13,7 @@ const userLogout = async (req,res)=>{
         console.log('Logged out successfully')
         console.log({userToken})
         req.cookies.user = 'not cookies'
-        const deletedtoken = req.cookies.user
-        console.log({deletedtoken})    
+        const deletedtoken = req.cookies.user  
     } catch (error) {
         res.status(500).json({
             error:error.message

@@ -27,10 +27,9 @@ const updateAdminProfile = async(req,res)=>{
                 {new:true}
             )
             if(adminProfileUpdate){
-                console.log(adminProfileUpdate)
                res.status(200).send('the product is succesfully updated')
                } else
-               console.log('errrrrr')
+               console.log('admin profile did not update')
         }
         else{
         const adminProfileUpdate = await adminModel.findOneAndUpdate(
@@ -47,10 +46,9 @@ const updateAdminProfile = async(req,res)=>{
             {new:true}       
         )
         if(adminProfileUpdate){
-            console.log(adminProfileUpdate)
            res.status(200).send('the product is succesfully updated')
            } else
-           console.log('errrrrr')
+           console.log('admin profile did not update')
         }
     } catch (error) {
         res.status(500).json({error:error})

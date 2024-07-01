@@ -4,7 +4,6 @@ const adminProfile = async(req,res) =>{
     try {
         const adminToken = req.cookies.adminLoginToken
         const verify = jwt.verify(adminToken,process.env.ADMINPASSWORD)
-        console.log(verify)
         if(!verify)
         return res.status(404).send('there is no token')
 

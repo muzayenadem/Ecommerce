@@ -11,7 +11,6 @@ async function adminAdd(req,res){
 
     try {
          const {firstName,lastName,email,phone,password,confirmPassword} = req.body
-         console.log(email)
 
         if(!firstName || !lastName || !email || !phone || !password || !confirmPassword)
         return res.status(401).json({error:"please fill all required data"})
@@ -26,12 +25,9 @@ async function adminAdd(req,res){
 
         const salt = await bcrypt.genSalt(10)
         const hashedPassword = await bcrypt.hash(password,salt)
-
-        console.log(hashedPassword)
+    
         const newAdmin = new adminModel({firstName,lastName,email,phone,password:hashedPassword})
         const savedAdmin = await newAdmin.save()
-
-        console.log(savedAdmin)
 
 
         const token = jwt.sign({token:savedAdmin._id},process.env.ADMINPASSWORD)
@@ -42,8 +38,7 @@ async function adminAdd(req,res){
             sameSite: 'None',
             path: '/'
         });
-
-        console.log(token)
+  
     } catch (error) {
         res.status(500).json({error:error})
     }

@@ -7,7 +7,6 @@ async function userSingup(req,res){
 
     try {
          const {firstName,lastName,email,password,confirmPassword} = req.body
-         console.log(email)
 
         if(!firstName || !lastName || !email || !password || !confirmPassword)
         return res.status(401).json({error:"please fill all required data"})
@@ -26,8 +25,7 @@ async function userSingup(req,res){
         console.log(hashedPassword)
         const newUser = new usersModel({firstName,lastName,email,password:hashedPassword,date: new Date()})
         const savedUser = await newUser.save()
-
-        console.log(savedUser)
+      
 
 
         const token = jwt.sign({token:savedUser._id},process.env.PASSWORD)

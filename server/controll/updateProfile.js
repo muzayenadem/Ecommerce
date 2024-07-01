@@ -27,10 +27,9 @@ const updateProfile = async(req,res)=>{
                 {new:true}
             )
             if(profileUpdate){
-                console.log(profileUpdate)
-               res.status(200).send('the product is succesfully updated')
+               res.status(200).send('profile is succesfully updated')
                } else
-               console.log('errrrrr')
+               console.log('user profile did not update')
         }
         else{
         const profileUpdate = await usersModel.findOneAndUpdate(
@@ -47,10 +46,10 @@ const updateProfile = async(req,res)=>{
             {new:true}       
         )
         if(profileUpdate){
-            console.log(profileUpdate)
+           
            res.status(200).send('the product is succesfully updated')
            } else
-           console.log('errrrrr')
+           console.log('user profile did not update')
         }
     } catch (error) {
         res.status(500).json({error:error})
