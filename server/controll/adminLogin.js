@@ -26,6 +26,7 @@ const  adminLogin = async(req,res)=>{
             sameSite: 'None',
             path: '/'
         });
+        res.status(200).json({ message: 'Logged in successfully' });
     } catch (error) {
      res.status(500).json({err:error.message})   
      console.log({error:error.message})
