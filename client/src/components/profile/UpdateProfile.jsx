@@ -8,7 +8,7 @@ import React, { useEffect, useRef,useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { storage } from '../../firebase/firebaseConfig'
-import { getDownloadURL, uploadBytes } from 'firebase/storage'
+import { ref, getDownloadURL, uploadBytes } from 'firebase/storage'
 //import { isInputElement } from 'react-router-dom/dist/dom'
 function UpdateProfile() {
 const [profile, setProfile] = useState({})
@@ -83,7 +83,7 @@ useEffect(()=>{
     const uploadImage = async()=>{
       if (image) {
         const storageRef = ref(storage, `usersImage/${image.name}`);
-        await uploadBytes(storageRef, file);
+        await uploadBytes(storageRef, image);
         const url = await getDownloadURL(storageRef);
         await axios.post(
           `https://ecommerce-8yhy.onrender.com/updateprofile`,

@@ -8,12 +8,9 @@ const updateProfile = async(req,res)=>{
         // const splitedTags =  tags && tags.split(',')
         // const splitedCategory = category && category.split(',')\
         // const imageName = req.file.filename
-        const file = req.file
         console.log({image:image,firstName,email,password,file})
-        const asure = req.file == undefined ? true : false
        
-        if(!asure){
-         const imageName = req.file.filename
+        
             const profileUpdate = await usersModel.findOneAndUpdate(
                 {_id:userId},
                 {
@@ -32,27 +29,6 @@ const updateProfile = async(req,res)=>{
                res.status(200).send('profile is succesfully updated')
                } else
                console.log('user profile did not update')
-        }
-        else{
-        const profileUpdate = await usersModel.findOneAndUpdate(
-            {_id:userId},
-            {
-                 firstName,
-                     lastName,
-                     email,
-                     password,
-                     phone,
-                     address,
-                     gender,
-            },
-            {new:true}       
-        )
-        if(profileUpdate){
-           
-           res.status(200).send('profile is succesfully updated')
-           } else
-           console.log('user profile did not update')
-        }
     } catch (error) {
         res.status(500).json({error:error})
         console.log(error.message)
