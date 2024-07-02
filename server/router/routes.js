@@ -50,15 +50,15 @@ const uploadProductImage = multer({storage:productImageStorage});
 
 
 // to store the Admin image
-const adminImageStorage = multer.diskStorage({
-    destination:function(req,file,cb){
-        cb(null,'Files/UsersImage');
-    },
-    filename:function(req,file,cb){
-        cb(null,file.originalname)
-    }
-})
-const uploadAdminImage = multer({storage:userImageStorage});
+// const adminImageStorage = multer.diskStorage({
+//     destination:function(req,file,cb){
+//         cb(null,'Files/UsersImage');
+//     },
+//     filename:function(req,file,cb){
+//         cb(null,file.originalname)
+//     }
+// })
+// const uploadAdminImage = multer({storage:userImageStorage});
 
 // get methods
 router.route('/let').get((req,res)=>{
@@ -92,7 +92,7 @@ router.route('/adminlogin').post(adminLogin)
 router.route('/addproduct').post(uploadProductImage.array('images',5),adminAuth,addProduct)
 router.route('/updateproduct').post(uploadProductImage.single('image'),adminAuth,updateProduct)
 router.route('/updateprofile').post(auth,updateProfile)
-router.route('/updateadminprofile').post(uploadAdminImage.single('image'),adminAuth,updateAdminProfile)
+router.route('/updateadminprofile').post(adminAuth,updateAdminProfile)
 router.route('/sendmessage').post(auth,sendMessage)
 
 // delete method

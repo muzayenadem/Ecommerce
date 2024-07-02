@@ -82,7 +82,7 @@ useEffect(()=>{
 //     <input type='file' accept='image/*' onChange={onchange}/>
 //   )
 // }
-
+console.log({imgUrl})
   return (
     <div>
          <dialog 
@@ -115,7 +115,7 @@ useEffect(()=>{
         </dialog>
         <div>
         <h1 className='text-center m-4'>Choice beautifull picture and well defined discription for your product</h1> 
-          <img onClick={()=> setImageDialoge(true)} className='w-20 h-20 rounded-full' src={`https://ecommerce-8yhy.onrender.com/UsersImage/${profile.image}`} />
+          <img onClick={()=> setImageDialoge(true)} className='w-20 h-20 rounded-full' src={profile.image} />
           <form onSubmit={submitHandler}>
        
           <label htmlFor='name' className='m-4'> Name</label>
