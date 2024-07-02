@@ -67,16 +67,16 @@ useEffect(()=>{
 // }
   const submitHandler = async(e) =>{
     e.preventDefault()
-     const formData = new FormData()
-    formData.append('image',image? image : profile.image)
-    formData.append('firstName', firstName ? firstName : profile.firstName)
-    formData.append('lastName', lastName ? lastName : profile.lastName)
-    formData.append('email', email ? email : profile.email)
-    formData.append('phone', phone ? phone : profile.phone)
-    formData.append('address', address ? address : profile.address)
-    formData.append('gender', gender ? gender : profile.gender)
-    formData.append('password',password ? password : profile.password)
-    formData.append('userId',profile._id)
+    //  const formData = new FormData()
+    // formData.append('image',image? image : profile.image)
+    // formData.append('firstName', firstName ? firstName : profile.firstName)
+    // formData.append('lastName', lastName ? lastName : profile.lastName)
+    // formData.append('email', email ? email : profile.email)
+    // formData.append('phone', phone ? phone : profile.phone)
+    // formData.append('address', address ? address : profile.address)
+    // formData.append('gender', gender ? gender : profile.gender)
+    // formData.append('password',password ? password : profile.password)
+    // formData.append('userId',profile._id)
     try {
       await axios.post(
         `https://ecommerce-8yhy.onrender.com/updateprofile`,
@@ -99,7 +99,7 @@ useEffect(()=>{
         setTimeout(() => {
           setOPen(false)
         }, 3000);
-   
+   console.log({image})
       })
       .catch((err)=>{
         console.log(err.message)
