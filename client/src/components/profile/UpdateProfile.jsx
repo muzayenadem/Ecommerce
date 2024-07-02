@@ -80,7 +80,7 @@ useEffect(()=>{
     try {
       await axios.post(
         `https://ecommerce-8yhy.onrender.com/updateprofile`,
-         formData,
+         {image},
         {
           // headers:{
           //   'Conetent-Type':'multipart-from-data'
