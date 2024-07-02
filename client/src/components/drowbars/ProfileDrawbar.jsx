@@ -53,7 +53,7 @@ function ProfileDrawbar({opened,nopend}) {
     // console.log(profile)
     //  const {firstName,lastName,email} = profile
   return (
-    <div  className='relative inline-block text-left'>
+    <div  className='relative inline-block text-left z-10'>
     <div className='flex'>
         {/* <button onClick={toggleDropDown}  type='button' className='top-0 right-0 inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-1' id='options-menu' >
           Login
@@ -72,7 +72,7 @@ function ProfileDrawbar({opened,nopend}) {
 
     {
         isOpen && (
-            <div className='container origin-top-right absolute -top-10 -right-10 p-0 rounded-2xl w-96  mt-[100px]  shadow-lg bg-white place-items-center ring-1 ring-black ring-opacity-5'>
+            <div className='container z-10 origin-top-right absolute -top-10 -right-10 p-0 rounded-2xl w-96  mt-[100px]  shadow-lg bg-white place-items-center ring-1 ring-black ring-opacity-5'>
                 <div
                 className='py-1'
                 role='menu'
@@ -85,7 +85,7 @@ function ProfileDrawbar({opened,nopend}) {
                     {
           profile.image ?
             <img onClick={toggleDropDown} src={`https://ecommerce-8yhy.onrender.com/UsersImage/${profile.image}`} className='w-14 h-14 rounded-full cursor-pointer' alt="" /> : 
-            <div className='w-14 h-14 rounded-full cursor-pointer capitalize bg-neutral-900 text-white font-bold text-center '>
+            <div className='w-14 h-14 rounded-full z-10 cursor-pointer capitalize bg-neutral-900 text-white font-bold text-center '>
              <h1 onClick={toggleDropDown} className='text-center text-2xl mt-3'> {profile.firstName[0]} {profile.lastName[0]}</h1>
             </div>
         }

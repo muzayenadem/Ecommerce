@@ -82,9 +82,9 @@ useEffect(()=>{
         `https://ecommerce-8yhy.onrender.com/updateprofile`,
          formData,
         {
-          headers:{
-            'Conetent-Type':'multipart-from-data'
-          }
+          // headers:{
+          //   'Conetent-Type':'multipart-from-data'
+          // }
         })
       .then((data)=>{
         setMee(data.data)

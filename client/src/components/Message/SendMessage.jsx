@@ -10,32 +10,39 @@ function SendMessage() {
   const [profile,setProfile] = useState({}) 
   const [file,setFile] = useState(null)
   const [message, setMessage] = useState('')
+  const [userImageSample,setUserImageSamlpe] = useState('') 
+  const [profileImageSample,setProfileImageSamlpe] = useState('') 
+
   useEffect(()=>{
     try {
       axios.get('https://ecommerce-8yhy.onrender.com/profiledata')
       .then((res)=>{
         setProfile(res.data.userData)
+        setProfileImageSamlpe(`${res.data.userData.firstName[0]}${res.data.userData.lastName[0]}`)
       })
     } catch (error) {
       console.log(error.message)
     }
   },[])
+
+
+  const messageData = async ()=>{
+   try {
+    const response = await axios.get('https://ecommerce-8yhy.onrender.com/usermessagedata'+messageId)
+    setUser(response.data.singleuserdata)
+    setChat(response.data.chat)
+    setUserImageSamlpe(`${response.data.singleuserdata.firstName[0]}${response.data.singleuserdata.lastName[0]}`)
+   } catch (error) {
+    console.log({error:err.message})
+   }
+  }
   useEffect(()=>{
-    try {
-        axios.get('https://ecommerce-8yhy.onrender.com/usermessagedata'+messageId)
-        .then(result=>{
-            setUser(result.data.singleuserdata)
-            setChat(result.data.chat)
-        })
-        .catch(err=>{
-            console.log(err)
-        })
-    } catch (error) {
-        console.log(error.message)
-    }
+    messageData()
 },[])
-console.log(messageId)
-console.log(chat)
+
+
+console.log({messageId})
+console.log({chat})
 const sendMessageHandler  = async() =>{
  // e.preventDefault()
    try {
@@ -50,9 +57,9 @@ const sendMessageHandler  = async() =>{
       `https://ecommerce-8yhy.onrender.com/sendmessage`,
        formData,
       {
-        headers:{
-          'Conetent-Type':'multipart-from-data'
-        }
+        // headers:{
+        //   'Conetent-Type':'multipart-from-data'
+        // }
       })
     .then(()=>{
       console.log('succed')
@@ -69,6 +76,7 @@ const sendMessageHandler  = async() =>{
     console.log(error.message)
   }
 }
+
   return (
     <div className='flex'>
       <div className="  h-[90vh] overflow-y-scroll pointer-events-auto b w-[80%] shadow-xl rounded-xl">
@@ -92,17 +100,18 @@ const sendMessageHandler  = async() =>{
         {!chat ? <div className='h-[80vh] pt-[25%]'><h1 className=' text-center font-bold text-violet-700 text-2xl'>Start conversation with your your friend by saying</h1> 
         <span className='  text-center ml-[40%] mt-[10%] text-4xl font-bold text-green-700 ' >HELLO!!</span></div>
         :
-       
+        <div>
+          {
          chat.map((single,i) =>{
            return (
            <div key={i} className='flex'>
                 { user._id == single.sender ? 
-                !user.image ? <div></div>
-             :
              <div className=' flex  justify-start mt-5'>
-              <img src={`https://ecommerce-8yhy.onrender.com/${user.image}`}
-            className='  w-8 mt-auto h-8 rounded-full'
-           /> 
+             {
+              user.image ?   ( <img src={`https://ecommerce-8yhy.onrender.com/UsersImage/${user.image}`}
+                className='  w-9 mt-auto h-9 rounded-full'
+           /> ) : (<div className='w-9 h-9 rounded-full flex justify-center uppercase items-center mt-auto ml-2 bg-fuchsia-900 text-white font-bold'>{userImageSample}</div>)
+             }
            <div className='max-w-sm  border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
             {
             single.file  && (  <img src={`https://ecommerce-8yhy.onrender.com/MessagesFile/${single.file}`}
@@ -116,7 +125,6 @@ const sendMessageHandler  = async() =>{
            }
            </div>
              </div>
-             : !profile.image ? <div></div>
            :
            <div className='flex flex-wrap justify-start mt-5 float-left ml-auto '>
                 <div className='max-w-sm  border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
@@ -131,18 +139,48 @@ const sendMessageHandler  = async() =>{
            </div>
            }
            </div>
-         
-              <img src={`https://ecommerce-8yhy.onrender.com/UsersImage/${profile.image}`}
-            className='w-8 h-8 rounded-full mt-auto ml-2'
-           /> 
+           {
+            profile.image ? (   <img src={`https://ecommerce-8yhy.onrender.com/UsersImage/${profile.image}`}
+              className='w-9 h-9 rounded-full mt-auto ml-2'
+             /> ) : (<div className='w-9 h-9 rounded-full flex justify-center items-center mt-auto ml-2 uppercase bg-blue-600 text-white font-bold'>{profileImageSample}</div>)
+           }
              </div>
            }
            </div>
            )
          })
         }
-       
+        </div>
+        }
        </div>
+       {/* <div>
+       {
+        !chat ? 
+        <div className='h-[80vh] pt-[25%]'><h1 className=' text-center font-bold text-violet-700 text-2xl'>Start conversation with your your friend by saying</h1> 
+        <span className='  text-center ml-[40%] mt-[10%] text-4xl font-bold text-green-700 ' >HELLO!!</span></div>
+        :
+        <div>
+           {
+          chat.map((single,i)=>{
+            return(
+              <div key={i}>
+                {
+                user._id == single.sender ? 
+                <div>
+                  <p className=' text-red-500'>{single.text}</p>
+                </div>
+                :
+                <div>
+                  <p className=' text-green-500'>{single.text}</p>
+                </div>
+                }
+              </div>
+            )
+          })
+        }
+        </div>
+       }
+       </div> */}
        <hr/>
        <div className=' sticky bottom-0 bg-white'>
        <div className='flex'>
