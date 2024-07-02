@@ -8,7 +8,7 @@ const updateProfile = async(req,res)=>{
         // const splitedTags =  tags && tags.split(',')
         // const splitedCategory = category && category.split(',')\
         // const imageName = req.file.filename
-        console.log({image:image,firstName,email,password,file})
+        console.log({image:image,firstName,email,password})
        
         
             const profileUpdate = await usersModel.findOneAndUpdate(
@@ -17,7 +17,7 @@ const updateProfile = async(req,res)=>{
                      image:image,
                      firstName,
                      lastName,
-                     email,
+                     email, 
                      password,
                      phone,
                      address,
