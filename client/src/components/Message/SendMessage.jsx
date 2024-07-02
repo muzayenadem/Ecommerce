@@ -3,12 +3,15 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { FaFileCirclePlus } from "react-icons/fa6";
 import { IoSend } from "react-icons/io5";
+import { storage } from '../../firebase/firebaseConfig';
+import { uploadBytes,getDownloadURL,ref } from 'firebase/storage';
 function SendMessage() {
   const [user,setUser] = useState({})
   const {messageId} = useParams()
   const [chat,setChat] = useState([])
   const [profile,setProfile] = useState({}) 
   const [file,setFile] = useState(null)
+  const [fileUrl, setFileUrl] = useState("");
   const [message, setMessage] = useState('')
   const [userImageSample,setUserImageSamlpe] = useState('') 
   const [profileImageSample,setProfileImageSamlpe] = useState('') 
@@ -44,14 +47,25 @@ function SendMessage() {
 console.log({messageId})
 console.log({chat})
 const sendMessageHandler  = async() =>{
- // e.preventDefault()
    try {
+    if (file) {
+      const storageRef = ref(storage, `uploads/${file.name}`);
+      await uploadBytes(storageRef, file);
+      const url = await getDownloadURL(storageRef);
+      setFileUrl(url);
+      // Send the file URL to the backend to save in MongoDB
+      saveFileUrl(url);
+    }
+
+
+
+
     const formData = new FormData();
     formData.append('receiver', messageId);
     formData.append('text', message);
-    if (file) {
-      formData.append('file', file);
-    }
+    // if (file) {
+    //   formData.append('file', file);
+    // }
 
     await axios.post(
       `https://ecommerce-8yhy.onrender.com/sendmessage`,
@@ -76,6 +90,7 @@ const sendMessageHandler  = async() =>{
     console.log(error.message)
   }
 }
+console.log(fileUrl)
 
   return (
     <div className='flex'>
