@@ -48,29 +48,17 @@ console.log({messageId})
 console.log({chat})
 const sendMessageHandler  = async() =>{
    try {
-    const formData = new FormData();
-    formData.append('receiver', messageId);
-    formData.append('text', message);
-    // if (file) {
-    //   formData.append('file', file);
-    // }
     if (file) {
       const storageRef = ref(storage, `uploads/${file.name}`);
       await uploadBytes(storageRef, file);
       const url = await getDownloadURL(storageRef);
       setFileUrl(url);
       // Send the file URL to the backend to save in MongoDB
-      formData.append('file', url);
     }
 
     await axios.post(
       `https://ecommerce-8yhy.onrender.com/sendmessage`,
-       formData,
-      {
-        // headers:{
-        //   'Conetent-Type':'multipart-from-data'
-        // }
-      })
+       {receiver:messageId,text:message,file:fileUrl})
     .then(()=>{
       console.log('succed')
     })

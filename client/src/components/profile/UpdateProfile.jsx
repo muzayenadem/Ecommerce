@@ -1,7 +1,8 @@
 
 import {useSelector, useDispatch} from 'react-redux'
 import { fetchProfileData } from '../../feutures/data/profileData'
-
+import { storage } from '../../firebase/firebaseConfig'
+import { ref,getDownloadURL,uploadBytes } from 'firebase/storage'
  
 //console.log(profile)
 import React, { useEffect, useRef,useState } from 'react'
@@ -13,6 +14,7 @@ const [profile, setProfile] = useState({})
 
 //const profile1 = useSelector(state => state.profileData.profile)
 const [image,setImage] = useState(null) 
+const [imgUrl,setImgUrl] = useState('')
 const [firstName,setFirstName] = useState(profile.firstName)
 const [lastName,setLastName] = useState(profile.firstName)
 const [email,setEmail] = useState(profile.email)
@@ -22,53 +24,27 @@ const [gender,setGender] = useState(profile.gender)
 const [address,setAddress] = useState(profile.address)
 const [mee,setMee] = useState(null)
 const [open, setOPen] = useState(false)
-
 const [imageDialoge, setImageDialoge] = useState(false)
 
-const navigate = useNavigate()
 
-
-// const {productId} = useParams()
 useEffect(()=>{
     axios.get('https://ecommerce-8yhy.onrender.com/profiledata')
     .then(result => setProfile(result.data.userData))
     .catch(err => setProfile(err.message))
 },[])
 
-// const changeProfileImage = async(e) =>{
-//   e.preventDefault()
-//   const formData = new FormData()
-//   formData.append('image',image? image : profile.image)
-//   formData.append('userId',profile._id)
-//   try {
-//     await axios.post(
-//       `http://localhost:4300/updateprofile`,
-//        formData,
-//       {
-//         headers:{
-//           'Conetent-Type':'multipart-from-data'
-//         }
-//       })
-//     .then((data)=>{
-//       setMee(data.data)
-//       setOPen(true)
-//       setTimeout(() => {
-//         setOPen(false)
-//         window.reload()
-//       }, 3000);
- 
-//     })
-//     .catch((err)=>{
-//       console.log(err.message)
-//     })
-//   } catch (error) {
-//     console.log(error.message)
-//   }
-// }
   const submitHandler = async(e) =>{
     e.preventDefault()
-     const formData = new FormData()
-    formData.append('image',image? image : profile.image)
+    const formData = new FormData()
+    try {
+      if (image) {
+        const storageRef = ref(storage, `uploads/${image.name}`);
+        await uploadBytes(storageRef, image);
+        const url = await getDownloadURL(storageRef);
+        setImgUrl(url);
+        formData.append('image',url ? url : profile.image)
+        // Send the file URL to the backend to save in MongoDB
+      }
     formData.append('firstName', firstName ? firstName : profile.firstName)
     formData.append('lastName', lastName ? lastName : profile.lastName)
     formData.append('email', email ? email : profile.email)
@@ -77,7 +53,6 @@ useEffect(()=>{
     formData.append('gender', gender ? gender : profile.gender)
     formData.append('password',password ? password : profile.password)
     formData.append('userId',profile._id)
-    try {
       await axios.post(
         `https://ecommerce-8yhy.onrender.com/updateprofile`,
          formData,

@@ -38,15 +38,15 @@ const productImageStorage = multer.diskStorage({
 const uploadProductImage = multer({storage:productImageStorage});
 
 // to store the Users image
-const userImageStorage = multer.diskStorage({
-    destination:function(req,file,cb){
-        cb(null,'Files/UsersImage');
-    },
-    filename:function(req,file,cb){
-        cb(null,file.originalname)
-    }
-})
-const uploadUserImage = multer({storage:userImageStorage});
+// const userImageStorage = multer.diskStorage({
+//     destination:function(req,file,cb){
+//         cb(null,'Files/UsersImage');
+//     },
+//     filename:function(req,file,cb){
+//         cb(null,file.originalname)
+//     }
+// })
+// const uploadUserImage = multer({storage:userImageStorage});
 
 
 // to store the Admin image
@@ -91,7 +91,7 @@ router.route('/addadmin').post(adminAdd)
 router.route('/adminlogin').post(adminLogin)
 router.route('/addproduct').post(uploadProductImage.array('images',5),adminAuth,addProduct)
 router.route('/updateproduct').post(uploadProductImage.single('image'),adminAuth,updateProduct)
-router.route('/updateprofile').post(uploadUserImage.single('image'),auth,updateProfile)
+router.route('/updateprofile').post(auth,updateProfile)
 router.route('/updateadminprofile').post(uploadAdminImage.single('image'),adminAuth,updateAdminProfile)
 router.route('/sendmessage').post(auth,sendMessage)
 

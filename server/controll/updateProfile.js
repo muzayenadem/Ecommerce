@@ -15,7 +15,7 @@ const updateProfile = async(req,res)=>{
             const profileUpdate = await usersModel.findOneAndUpdate(
                 {_id:userId},
                 {
-                     image:imageName,
+                     image:image,
                      firstName,
                      lastName,
                      email,
