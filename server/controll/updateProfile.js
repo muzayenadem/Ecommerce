@@ -9,7 +9,7 @@ const updateProfile = async(req,res)=>{
         // const splitedCategory = category && category.split(',')\
         // const imageName = req.file.filename
         const file = req.file
-        console.log({file,body:req.body})
+        console.log({file,firstName,email,password})
         const asure = req.file == undefined ? true : false
        
         if(!asure){
