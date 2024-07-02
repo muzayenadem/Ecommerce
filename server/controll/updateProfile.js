@@ -8,8 +8,7 @@ const updateProfile = async(req,res)=>{
         // const splitedTags =  tags && tags.split(',')
         // const splitedCategory = category && category.split(',')\
         // const imageName = req.file.filename
-        const file = req.file
-        console.log({image:image[0].name,firstName,email,password,file})
+        console.log({image:image[0].name,firstName,email,password})
         const asure = req.file == undefined ? true : false
        
         if(!asure){
@@ -37,12 +36,13 @@ const updateProfile = async(req,res)=>{
         const profileUpdate = await usersModel.findOneAndUpdate(
             {_id:userId},
             {
-                 firstName,
+                     firstName,
                      lastName,
                      email,
                      password,
                      phone,
                      address,
+                     image,
                      gender,
             },
             {new:true}       
