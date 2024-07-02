@@ -91,7 +91,7 @@ router.route('/addadmin').post(adminAdd)
 router.route('/adminlogin').post(adminLogin)
 router.route('/addproduct').post(uploadProductImage.array('images',5),adminAuth,addProduct)
 router.route('/updateproduct').post(uploadProductImage.single('image'),adminAuth,updateProduct)
-router.route('/updateprofile').post(auth,updateProfile)
+router.route('/updateprofile').post(updateProfile)
 router.route('/updateadminprofile').post(adminAuth,updateAdminProfile)
 router.route('/sendmessage').post(auth,sendMessage)
 

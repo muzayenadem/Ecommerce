@@ -5,26 +5,45 @@ const updateProfile = async(req,res)=>{
 
         const {image,firstName,lastName,email,password,phone,address,gender,userId} = req.body
         console.log({image,firstName,email})
+        const profileUpdate = await usersModel.findOneAndUpdate(
+            {_id:userId},
+            {
+                 image: !image ? null : image,
+                 firstName,
+                 lastName,
+                 email,
+                 password,
+                 phone,
+                 address,
+                 gender,
+            },
+            {new:true}
+        )
+        if(profileUpdate){
+           res.status(200).send('profile is succesfully updated')
+           } else
+           console.log('user profile did not update')
+
         // if(!asure){
         //  const imageName = req.file.filename
-        //     const profileUpdate = await usersModel.findOneAndUpdate(
-        //         {_id:userId},
-        //         {
-        //              image:image,
-        //              firstName,
-        //              lastName,
-        //              email,
-        //              password,
-        //              phone,
-        //              address,
-        //              gender,
-        //         },
-        //         {new:true}
-        //     )
-        //     if(profileUpdate){
-        //        res.status(200).send('profile is succesfully updated')
-        //        } else
-        //        console.log('user profile did not update')
+            // const profileUpdate = await usersModel.findOneAndUpdate(
+            //     {_id:userId},
+            //     {
+            //          image:image,
+            //          firstName,
+            //          lastName,
+            //          email,
+            //          password,
+            //          phone,
+            //          address,
+            //          gender,
+            //     },
+            //     {new:true}
+            // )
+            // if(profileUpdate){
+            //    res.status(200).send('profile is succesfully updated')
+            //    } else
+            //    console.log('user profile did not update')
         // }
         // else{
         // const profileUpdate = await usersModel.findOneAndUpdate(
