@@ -7,12 +7,15 @@ import { fetchProfileData } from '../../feutures/data/profileData'
 import React, { useEffect, useRef,useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
+import { storage } from '../../firebase/firebaseConfig'
+import { getDownloadURL, uploadBytes } from 'firebase/storage'
 //import { isInputElement } from 'react-router-dom/dist/dom'
 function UpdateProfile() {
 const [profile, setProfile] = useState({})
 
 //const profile1 = useSelector(state => state.profileData.profile)
 const [image,setImage] = useState(null) 
+const [imgUrl, setImgUrl] = useState('')
 const [firstName,setFirstName] = useState(profile.firstName)
 const [lastName,setLastName] = useState(profile.firstName)
 const [email,setEmail] = useState(profile.email)
@@ -77,6 +80,39 @@ useEffect(()=>{
     // formData.append('gender', gender ? gender : profile.gender)
     // formData.append('password',password ? password : profile.password)
     // formData.append('userId',profile._id)
+    const uploadImage = async()=>{
+      if (image) {
+        const storageRef = ref(storage, `usersImage/${image.name}`);
+        await uploadBytes(storageRef, file);
+        const url = await getDownloadURL(storageRef);
+        await axios.post(
+          `https://ecommerce-8yhy.onrender.com/updateprofile`,
+        {
+          image:url,
+          firstName:firstName ? firstName : profile.firstName,
+          lastName:lastName ? lastName : profile.lastName,
+          email:email ? email : profile.email,
+          phone:phone ? phone : profile.phone,
+          address:address ? address : profile.address,
+          gender:gender ? gender : profile.gender,
+          password:password ? password : profile.password,
+          userId:profile._id
+        }
+        )
+        .then((data)=>{
+          setMee(data.data)
+          setOPen(true)
+          setImgUrl(url)
+          setImageDialoge(false)
+          setTimeout(() => {
+            setOPen(false)
+          }, 3000);
+        })
+        .catch((err)=>{
+          console.log(err.message)
+        })
+      }
+    }
     try {
       await axios.post(
         `https://ecommerce-8yhy.onrender.com/updateprofile`,
@@ -93,13 +129,9 @@ useEffect(()=>{
       }
       )
       .then((data)=>{
-        setMee(data.data)
-        setOPen(true)
-        setImageDialoge(false)
-        setTimeout(() => {
-          setOPen(false)
-        }, 3000);
-   console.log({image})
+        if(data.data == 'profile is succesfully updated'){
+          uploadImage()
+        }
       })
       .catch((err)=>{
         console.log(err.message)
@@ -108,6 +140,8 @@ useEffect(()=>{
       console.log(error.message)
     }
   }
+
+  console.log({imgUrl})
 // const FileInput = ({onChange}) =>{
 //   return (
 //     <input type='file' accept='image/*' onChange={onchange}/>
