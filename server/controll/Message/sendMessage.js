@@ -4,13 +4,8 @@ const messageModel = require('../../models/messageModel')
 const sendMessage = async(req,res) =>{
    try {
     const userToken = req.cookies.user
-    const {receiver,text} = req.body
-    console.log({receiver,text})
-    const assure = req.file == undefined ? true : false
-   let file 
-    if(!assure){
-      file = req.file.filename
-    }
+    const {receiver,text,file} = req.body
+    console.log({receiver,text,file})
     console.log({file})
     console.log(receiver)
     if(!userToken){

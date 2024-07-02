@@ -48,24 +48,20 @@ console.log({messageId})
 console.log({chat})
 const sendMessageHandler  = async() =>{
    try {
-    if (file) {
-      const storageRef = ref(storage, `uploads/${file.name}`);
-      await uploadBytes(storageRef, file);
-      const url = await getDownloadURL(storageRef);
-      setFileUrl(url);
-      // Send the file URL to the backend to save in MongoDB
-      saveFileUrl(url);
-    }
-
-
-
-
     const formData = new FormData();
     formData.append('receiver', messageId);
     formData.append('text', message);
     // if (file) {
     //   formData.append('file', file);
     // }
+    if (file) {
+      const storageRef = ref(storage, `uploads/${file.name}`);
+      await uploadBytes(storageRef, file);
+      const url = await getDownloadURL(storageRef);
+      setFileUrl(url);
+      // Send the file URL to the backend to save in MongoDB
+      formData.append('file', url);
+    }
 
     await axios.post(
       `https://ecommerce-8yhy.onrender.com/sendmessage`,
@@ -129,7 +125,7 @@ console.log(fileUrl)
              }
            <div className='max-w-sm  border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
             {
-            single.file  && (  <img src={`https://ecommerce-8yhy.onrender.com/MessagesFile/${single.file}`}
+            single.file  && (  <img src={single.file}
             className=' mt-auto rounded-xl m2'
            />)
            }
@@ -144,7 +140,7 @@ console.log(fileUrl)
            <div className='flex flex-wrap justify-start mt-5 float-left ml-auto '>
                 <div className='max-w-sm  border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
             {
-            single.file  && (  <img src={`https://ecommerce-8yhy.onrender.com/MessagesFile/${single.file}`}
+            single.file  && (  <img src={single.file}
             className=' mt-auto rounded-xl m2'
            />)
            }

@@ -1,13 +1,13 @@
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 const firebaseConfig = {
-    apiKey: "AIzaSyDvmcA2R7zyS3_8ARl1R9eLbw5tDNpvRA8",
-    authDomain: "ezasco-file-storage.firebaseapp.com",
-    projectId: "ezasco-file-storage",
-    storageBucket: "ezasco-file-storage.appspot.com",
-    messagingSenderId: "705703991917",
-    appId: "1:705703991917:web:901274b08b8a42f929fd64",
-    measurementId: "G-70M5TJWMXB"
+    apiKey: "AIzaSyDzAr5adeOfaKIWIaVVrkzWw9cZ1XUS5vU",
+    authDomain: "ezasco-storage.firebaseapp.com",
+    projectId: "ezasco-storage",
+    storageBucket: "ezasco-storage.appspot.com",
+    messagingSenderId: "147715898677",
+    appId: "1:147715898677:web:d9e25fb781c6d0328fe07c",
+    measurementId: "G-MP06YBETLC"
   };
 
 const app = initializeApp(firebaseConfig);

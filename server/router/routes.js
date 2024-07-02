@@ -60,21 +60,6 @@ const adminImageStorage = multer.diskStorage({
 })
 const uploadAdminImage = multer({storage:userImageStorage});
 
-// to store message file
-const messageFileStorage = multer.diskStorage({
-    destination:function(req,file,cb){
-        cb(null,'Files/MessagesFile');
-    },
-    filename: (req, file, cb) => {
-        const currentDate = new Date().toISOString().slice(0, 10); // Get current date (YYYY-MM-DD)
-        const currentTime = new Date().toISOString().slice(11, 19).replace(/:/g, '-'); // Get current time (HH-MM-SS)
-        const fileName = currentDate + '-' + currentTime + '-' + file.originalname; // Append current date and time to the original filename
-        cb(null, fileName);
-    }
-})
-const uploadMessageFile = multer({storage:messageFileStorage});
-
-
 // get methods
 router.route('/let').get((req,res)=>{
     res.send('yes yes yes')
@@ -108,7 +93,7 @@ router.route('/addproduct').post(uploadProductImage.array('images',5),adminAuth,
 router.route('/updateproduct').post(uploadProductImage.single('image'),adminAuth,updateProduct)
 router.route('/updateprofile').post(uploadUserImage.single('image'),auth,updateProfile)
 router.route('/updateadminprofile').post(uploadAdminImage.single('image'),adminAuth,updateAdminProfile)
-router.route('/sendmessage').post(uploadMessageFile.single('file'),auth,sendMessage)
+router.route('/sendmessage').post(auth,sendMessage)
 
 // delete method
 
