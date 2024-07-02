@@ -80,12 +80,18 @@ useEffect(()=>{
     try {
       await axios.post(
         `https://ecommerce-8yhy.onrender.com/updateprofile`,
-         {image},
-        {
-          // headers:{
-          //   'Conetent-Type':'multipart-from-data'
-          // }
-        })
+      {
+        image:image? image : profile.image,
+        firstName:firstName ? firstName : profile.firstName,
+        lastName:lastName ? lastName : profile.lastName,
+        email:email ? email : profile.email,
+        phone:phone ? phone : profile.phone,
+        address:address ? address : profile.address,
+        gender:gender ? gender : profile.gender,
+        password:password ? password : profile.password,
+        userId:profile._id
+      }
+      )
       .then((data)=>{
         setMee(data.data)
         setOPen(true)
