@@ -86,7 +86,7 @@ useEffect(()=>{
         await uploadBytes(storageRef, image);
         const url = await getDownloadURL(storageRef);
         await axios.post(
-          `http://localhost:4300/updateprofile`,
+          `https://ecommerce-8yhy.onrender.com/updateprofile`,
         {
           image:url,
           firstName:firstName ? firstName : profile.firstName,
@@ -115,7 +115,7 @@ useEffect(()=>{
     }
     try {
       await axios.post(
-        `http://localhost:4300/updateprofile`,
+        `https://ecommerce-8yhy.onrender.com/updateprofile`,
       {
         //image:image? image : profile.image,
         firstName:firstName ? firstName : profile.firstName,

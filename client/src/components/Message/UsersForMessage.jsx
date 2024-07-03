@@ -73,7 +73,7 @@ function UsersForMessage() {
                     <div className='flex'>
                   {
                     single.image ? 
-                    <img src={`https://ecommerce-8yhy.onrender.com/UsersImage/${single.image}`}
+                    <img src={single.image}
                    className=' w-10 h-10 rounded-full'
                    />
                    :

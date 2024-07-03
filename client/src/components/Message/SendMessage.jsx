@@ -107,7 +107,7 @@ console.log(fileUrl)
                 { user._id == single.sender ? 
              <div className=' flex  justify-start mt-5'>
              {
-              user.image ?   ( <img src={`https://ecommerce-8yhy.onrender.com/UsersImage/${user.image}`}
+              user.image ?   ( <img src={user.image}
                 className='  w-9 mt-auto h-9 rounded-full'
            /> ) : (<div className='w-9 h-9 rounded-full flex justify-center uppercase items-center mt-auto ml-2 bg-fuchsia-900 text-white font-bold'>{userImageSample}</div>)
              }
@@ -139,7 +139,7 @@ console.log(fileUrl)
            }
            </div>
            {
-            profile.image ? (   <img src={`https://ecommerce-8yhy.onrender.com/UsersImage/${profile.image}`}
+            profile.image ? (   <img src={profile.image}
               className='w-9 h-9 rounded-full mt-auto ml-2'
              /> ) : (<div className='w-9 h-9 rounded-full flex justify-center items-center mt-auto ml-2 uppercase bg-blue-600 text-white font-bold'>{profileImageSample}</div>)
            }
