@@ -207,7 +207,7 @@ console.log(fileUrl)
        <div className=' w-[20%] '>
         <div className='mt-[15%]'>
           {user.image ? 
-            <img src={`https://ecommerce-8yhy.onrender.com/UsersImage/${user.image}`}
+            <img src={user.image}
             className='  w-28 mt-auto h-28 ml-[20%] rounded-full'
            /> :
           <div className=' bg-orange-500 w-28 h-38 rounded-full align-middle text-white font-bold text-center'>{user.firstName}</div>
