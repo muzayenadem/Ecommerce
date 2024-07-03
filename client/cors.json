@@ -1,6 +1,6 @@
 [
     {
-      "origin": ["https://ezasco.vercel.app","http://localhost:5173"],
+      "origin": ["https://ezasco.vercel.app","http://localhost:5173","https://ezasco-git-ecommerce-muzayen.vercel.app"],
       "method": ["GET", "HEAD", "PUT", "POST", "DELETE"],
       "maxAgeSeconds": 3600
     }

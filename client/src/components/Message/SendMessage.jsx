@@ -48,17 +48,18 @@ console.log({messageId})
 console.log({chat})
 const sendMessageHandler  = async() =>{
    try {
-    if (file) {
+    let Photourl = null
+    if(file){
       const storageRef = ref(storage, `uploads/${file.name}`);
       await uploadBytes(storageRef, file);
-      const url = await getDownloadURL(storageRef);
-      setFileUrl(url);
-      // Send the file URL to the backend to save in MongoDB
+       Photourl = await getDownloadURL(storageRef);
+      setFileUrl(Photourl);
     }
+      // Send the file URL to the backend to save in MongoDB
 
     await axios.post(
       `https://ecommerce-8yhy.onrender.com/sendmessage`,
-       {receiver:messageId,text:message,file:fileUrl})
+       {receiver:messageId,text:message,file:Photourl ? Photourl : null})
     .then(()=>{
       console.log('succed')
     })
@@ -84,7 +85,7 @@ console.log(fileUrl)
           <div className="">
             {!user.image ? <div></div>
              :
-             <img src={`https://ecommerce-8yhy.onrender.com/UsersImage/${user.image}`}
+             <img src={user.image}
             className='w-14 mr-5 mt-auto h-14 rounded-full'
            />
            }
