@@ -10,7 +10,7 @@ function UsersForMessage() {
 
     const searchHandler =async (value) =>{
       try {
-       await axios.get('https://ecommerce-8yhy.onrender.com/searchuserformessage'+value)
+       await axios.get('http://localhost:4300/searchuserformessage'+value)
        .then(result =>{
        setAllUsers(result.data.searchedUsers)
        console.log(result.data)
@@ -22,7 +22,7 @@ function UsersForMessage() {
       }  
      }
     useEffect(()=>{
-        axios.get('https://ecommerce-8yhy.onrender.com/searchuserformessage'+value)
+        axios.get('http://localhost:4300/searchuserformessage'+value)
         .then(result =>{
             setAllUsers(result.data.allUsers)
         })
@@ -34,7 +34,7 @@ function UsersForMessage() {
 
     const forMessage = async(id)=>{
       try {
-        await axios.get('https://ecommerce-8yhy.onrender.com/usermessagedata'+id)
+        await axios.get('http://localhost:4300/usermessagedata'+id)
         .then(()=>{
           console.log('succeed')
           setOpen(true)
@@ -66,26 +66,31 @@ function UsersForMessage() {
     <div className='flex flex-wrap h-auto max-h-[80vh]  overflow-y-auto w-[45%] md:w-[100%]'>
       <hr/>
         <div className='w-[100%] md:w-[100%]'>
-        
-        {
-            allusers.map((single,i)=>{
-                return <div key={i} onClick={()=>forMessage(single._id)} className='h-auto bg-white m-1 rounded-md p-2'>
-                    <div className='flex>
-                  {
-                    single.image ? 
-                    <img src={single.image}
-                   className=' w-10 h-10 rounded-full'
-                   />
-                   :
-                   <div className='w-10 h-10 rounded-full text-center items-center p-3 bg-orange-500 text-white font-bold'>{single.firstName[0]} {single.lastName[0]}</div>
-                  }
-                   
-                    <h1 className='ml-2 mt-2'>{single.firstName} {single.lastName}</h1>
-                    </div>
-      
-                </div>
-            })
-        }
+     {
+      allusers.map((single,i)=>{
+        return(
+          <div key={i} onClick={()=> forMessage(single._id)} className='w-full flex gap-3 rounded-md bg-white shadow-md shadow-neutral-300 p-2 mt-2'>
+           <div className=''>
+            {
+              single.image ? 
+              <div className='relative   h-14 w-14 s'>
+              <span className={`absolute -top-0.5 right-1 w-3 h-3  rounded-full ${single.active == true? 'bg-fuchsia-600' : 'bg-neutral-400'}`}></span>
+              <img src={single.image} className='w-full hadow-lg shadow-neutral-900 h-full rounded-full'/>
+            </div> : 
+                <div className='relative   h-14 w-14 '>
+                <span className={`absolute -top-0.5 right-1 w-3 h-3  rounded-full ${single.active == true ? 'bg-fuchsia-600' : 'bg-neutral-400'}`}></span>
+                <div className='w-full h-full shadow-sm shadow-neutral-400 rounded-full text-center capitalize items-center p-3 bg-orange-500 text-white font-bold'>{single.firstName[0]} {single.lastName[0]}</div>
+              </div>
+            }
+           </div>
+           <div className="flex flex-col gap-1 p-3/2 ">
+            <h1 className=' capitalize text-lg '>{single.firstName} {single.lastName}</h1>
+            <p className='text-neutral-400 text-base'>Last logout </p>
+           </div>
+          </div>
+        )
+      })
+     }
         </div>
     </div>
     </div> 

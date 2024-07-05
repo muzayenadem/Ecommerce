@@ -42,6 +42,7 @@ const schema = mongoose.Schema({
     notification:{
         type:String
     },
+    active:Boolean,
     messages:[]
    // messages:[{ type: mongoose.Schema.Types.ObjectId, ref: 'Message' }],
 })

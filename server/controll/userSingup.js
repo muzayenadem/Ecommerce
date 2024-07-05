@@ -23,7 +23,7 @@ async function userSingup(req,res){
         const hashedPassword = await bcrypt.hash(password,salt)
 
         console.log(hashedPassword)
-        const newUser = new usersModel({firstName,lastName,email,password:hashedPassword,date: new Date()})
+        const newUser = new usersModel({firstName,lastName,email,password:hashedPassword,date: new Date(),active:false})
         const savedUser = await newUser.save()
       
 

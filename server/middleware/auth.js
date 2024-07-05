@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken') 
+const usersModel = require('../models/usersModel')
 const auth = async(req,res,next)=>{
     try {
         const token = req.cookies.user
@@ -11,6 +12,14 @@ const auth = async(req,res,next)=>{
         return res.status(401).json({err:'not authorized'})
 
         req.user = verifyToken.user
+        const person = await usersModel.findOneAndUpdate(
+            {_id:verifyToken.userId},
+            {
+               active:true
+            },
+            {new:true}
+        )
+        console.log(req.user)
         next()
     } catch (error) {
         res.status(500).json({err:error.message})
