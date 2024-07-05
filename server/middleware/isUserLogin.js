@@ -12,7 +12,7 @@ const isUserLogin = async(req,res, next) =>{
             let offLineProfile = await usersModel.findOneAndUpdate(
                 {_id:verify.userId},
                 {
-                    active:true
+                    active:false
                 },
                 {new:true}
             )
@@ -25,7 +25,7 @@ const isUserLogin = async(req,res, next) =>{
             let offLineProfile = await usersModel.findOneAndUpdate(
                 {_id:verify.userId},
                 {
-                    active:true
+                    active:false
                 },
                 {new:true}
             )
