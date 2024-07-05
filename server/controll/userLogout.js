@@ -15,7 +15,7 @@ const userLogout = async (req,res)=>{
         const person = await usersModel.findOneAndUpdate(
             {_id:verify.userId},
             {
-               active:true
+               active:false
             },
             {new:true}
         )
