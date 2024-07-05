@@ -70,7 +70,9 @@ function UsersForMessage() {
         {
             allusers.map((single,i)=>{
                 return <div key={i} onClick={()=>forMessage(single._id)} className='h-auto bg-white m-1 rounded-md p-2'>
-                    <div className='flex'>
+                    <div className='flex>
+                        <div className='rounded-full w-5 h-5 bg-green-500 absolute right-2 top-1 '>
+                        </div>
                   {
                     single.image ? 
                     <img src={single.image}
