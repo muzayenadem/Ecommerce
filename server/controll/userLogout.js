@@ -12,13 +12,13 @@ const userLogout = async (req,res)=>{
         if(!verify)
             return res.status(402).send('not authorized')
 
-        const person = await usersModel.findOneAndUpdate(
-            {_id:verify.userId},
-            {
-               active:false
-            },
-            {new:true}
-        )
+        // const person = await usersModel.findOneAndUpdate(
+        //     {_id:verify.userId},
+        //     {
+        //        active:false
+        //     },
+        //     {new:true}
+        // )
         res.clearCookie('user', { path: '/' });
         res.cookie('user','', {
             maxAge: 24 * 60 * 60 * 1000,
@@ -30,7 +30,7 @@ const userLogout = async (req,res)=>{
         const userToken = req.cookies.user
         res.status(200).json({ message: 'Logged out successfully' });
         console.log('Logged out successfully')
-        console.log({person})
+        // console.log({person})
     } catch (error) {
         res.status(500).json({
             error:error.message
