@@ -10,7 +10,7 @@ function UsersForMessage() {
 
     const searchHandler =async (value) =>{
       try {
-       await axios.get('http://localhost:4300/searchuserformessage'+value)
+       await axios.get('https://ecommerce-8yhy.onrender.com/searchuserformessage'+value)
        .then(result =>{
        setAllUsers(result.data.searchedUsers)
        console.log(result.data)
@@ -22,7 +22,7 @@ function UsersForMessage() {
       }  
      }
     useEffect(()=>{
-        axios.get('http://localhost:4300/searchuserformessage'+value)
+        axios.get('https://ecommerce-8yhy.onrender.com/searchuserformessage'+value)
         .then(result =>{
             setAllUsers(result.data.allUsers)
         })
@@ -34,7 +34,7 @@ function UsersForMessage() {
 
     const forMessage = async(id)=>{
       try {
-        await axios.get('http://localhost:4300/usermessagedata'+id)
+        await axios.get('https://ecommerce-8yhy.onrender.com/usermessagedata'+id)
         .then(()=>{
           console.log('succeed')
           setOpen(true)
