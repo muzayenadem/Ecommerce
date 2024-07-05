@@ -39,6 +39,9 @@ const schema = mongoose.Schema({
     date:{
         type:String
     },
+    activity:{
+        type:String
+    },
     notification:{
         type:String
     },

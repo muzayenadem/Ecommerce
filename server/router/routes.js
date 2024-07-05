@@ -26,7 +26,7 @@ const searchUserForMessage = require('../controll/Message/searchUserForMessage')
 const userMessageData = require('../controll/Message/userMessageData')
 const sendMessage = require('../controll/Message/sendMessage')
 const userLogout = require('../controll/userLogout')
-const isUserLogin = require('../middleware/isUserLogin')
+const isUserLogin = require('../middleware/isUserActive')
 // to store the products image
 const productImageStorage = multer.diskStorage({
     destination:function(req,file,cb){

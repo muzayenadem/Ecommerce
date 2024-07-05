@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const router = require('./router/routes')
-
+const isUserLogin =  require('./middleware/isUserActive')
 
 // configuration
 
@@ -44,10 +44,49 @@ app.use(cors({
    }))
 
    app.options('/sendmessage', cors()); // enable pre-flight requests
+   app.use( async (req,res,next) =>{
+    try {
+        const token = req.cookies.user
 
-// const allowedOrigins = [
-//     'https://ecommerce-client-coral.vercel.app'
-//   ];
+        
+        if(!token){
+            let offLineProfile = await usersModel.findOneAndUpdate(
+                {_id:verify.userId},
+                {
+                    active:false
+                },
+                {new:true}
+            )
+            return console.log({offLineProfile})
+        }
+
+        const verify = jwt.verify(token,process.env.PASSWORD)
+
+        if(!verify){
+            let offLineProfile = await usersModel.findOneAndUpdate(
+                {_id:verify.userId},
+                {
+                    active:false
+                },
+                {new:true}
+            )
+            return console.log({offLineProfile})
+        }
+
+        const onlineProfile = await usersModel.findOneAndUpdate(
+            {_id:verify.userId},
+            {
+                active:true
+            },
+            {new:true}
+        )
+        console.log({onlineProfile})
+        
+        next()
+    } catch (error) {
+        res.status(500).send('something is error at users login middleware')
+    }
+   })
   
 //   const corsOptions = {
 //     origin: function (origin, callback) {
