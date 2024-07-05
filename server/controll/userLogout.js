@@ -30,9 +30,7 @@ const userLogout = async (req,res)=>{
         const userToken = req.cookies.user
         res.status(200).json({ message: 'Logged out successfully' });
         console.log('Logged out successfully')
-        console.log({userToken})
-        req.cookies.user = 'not cookies'
-        const deletedtoken = req.cookies.user  
+        console.log({person})
     } catch (error) {
         res.status(500).json({
             error:error.message

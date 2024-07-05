@@ -33,7 +33,7 @@ function ProfileDrawbar({opened,nopend}) {
     const navigate = useNavigate('')
     const logoutHandler = async () => {
       try {
-        const response = await axios.get('http://localhost:4300/logout');
+        const response = await axios.get('https://ecommerce-8yhy.onrender.com/logout');
         console.log(response.data);
         // Remove the token cookie from the client side
        // Cookies.remove('user', { path: '/' });
