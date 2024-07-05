@@ -40,8 +40,8 @@ const isUserLogin = async(req,res, next) =>{
             {new:true}
         )
         console.log({onlineProfile})
-
-     
+        
+        next()
     } catch (error) {
         res.status(500).send('something is error at users login middleware')
     }
