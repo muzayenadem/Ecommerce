@@ -153,34 +153,6 @@ console.log(fileUrl)
         </div>
         }
        </div>
-       {/* <div>
-       {
-        !chat ? 
-        <div className='h-[80vh] pt-[25%]'><h1 className=' text-center font-bold text-violet-700 text-2xl'>Start conversation with your your friend by saying</h1> 
-        <span className='  text-center ml-[40%] mt-[10%] text-4xl font-bold text-green-700 ' >HELLO!!</span></div>
-        :
-        <div>
-           {
-          chat.map((single,i)=>{
-            return(
-              <div key={i}>
-                {
-                user._id == single.sender ? 
-                <div>
-                  <p className=' text-red-500'>{single.text}</p>
-                </div>
-                :
-                <div>
-                  <p className=' text-green-500'>{single.text}</p>
-                </div>
-                }
-              </div>
-            )
-          })
-        }
-        </div>
-       }
-       </div> */}
        <hr/>
        <div className=' sticky bottom-0 bg-white'>
        <div className='flex'>
